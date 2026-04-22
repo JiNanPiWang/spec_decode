@@ -17,7 +17,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ========== 配置 ==========
 HOST = "127.0.0.1"
-PORT = 30000
+PORT = 6006
 BASE_URL = f"http://{HOST}:{PORT}/v1/completions"
 
 # 测试矩阵: (并发数, 输入字符数≈token数, 输出token数)
@@ -38,12 +38,13 @@ WARMUP_REQS  = 2    # 预热请求数（不计入结果）
 
 # ========== 文件路径（带时间戳）==========
 TIMESTAMP = datetime.now().strftime("%Y%m%d_%H%M%S")
-OUT_DIR   = f"./bench_results_{TIMESTAMP}"
+OUT_ROOT  = os.path.join("outputs", "benchmarks", "sglang_baseline")
+OUT_DIR   = os.path.join(OUT_ROOT, TIMESTAMP)
 os.makedirs(OUT_DIR, exist_ok=True)
 
-CSV_FILE     = f"{OUT_DIR}/{TIMESTAMP}_results.csv"
-DETAIL_LOG   = f"{OUT_DIR}/{TIMESTAMP}_detail.log"
-SUMMARY_LOG  = f"{OUT_DIR}/{TIMESTAMP}_summary.log"
+CSV_FILE     = os.path.join(OUT_DIR, f"{TIMESTAMP}_results.csv")
+DETAIL_LOG   = os.path.join(OUT_DIR, f"{TIMESTAMP}_detail.log")
+SUMMARY_LOG  = os.path.join(OUT_DIR, f"{TIMESTAMP}_summary.log")
 
 # ========== 工具函数 ==========
 
@@ -129,6 +130,7 @@ def main():
     log(f"{'='*55}")
     log(f"SGLang Baseline Benchmark  {TIMESTAMP}")
     log(f"Server : {BASE_URL}")
+    log(f"OutRoot: {OUT_ROOT}")
     log(f"Output : {OUT_DIR}")
     log(f"{'='*55}")
 
@@ -216,6 +218,7 @@ def main():
             f"{r[7]:>8} {r[8]:>7} {r[9]:>8} {r[10]:>9} {r[12]:>9} {r[13]:>9} {r[14]:>10}"
         )
     summary.append(f"{'='*90}")
+    summary.append(f"OutRoot: {OUT_ROOT}")
     summary.append(f"CSV  : {CSV_FILE}")
     summary.append(f"Log  : {DETAIL_LOG}")
 
