@@ -16,7 +16,24 @@ python3 -m sglang.launch_server     --model-path /root/autodl-tmp/models/glm-4-3
 ```
 
 
-20260422_171432测STANDALONE投机采样，能快一点，快的不多
+20260422_171432 20260422_172537测STANDALONE投机采样，能快一点，快的不多，一个用了gptq，一个用了gptq_marlin，比普通快27%左右
 ```bash
-python3 -m sglang.launch_server     --model-path /root/autodl-tmp/models/glm-4-32b-0414-gptq-int4     --trust-remote-code     --port 6006     --host 0.0.0.0     --quantization gptq          --mem-fraction-static 0.7      --disable-piecewise-cuda-graph      --speculative-draft-model-path /root/autodl-tmp/models/GLM-4.5-0.6B-v3          --speculative-algorithm STANDALONE          --speculative-draft-model-quantization unquant           --disable-cuda-graph
+python3 -m sglang.launch_server     --model-path /root/autodl-tmp/models/glm-4-32b-0414-gptq-int4     --trust-remote-code     --port 6006     --host 0.0.0.0     --quantization gptq_marlin          --mem-fraction-static 0.7      --disable-piecewise-cuda-graph      --speculative-draft-model-path /root/autodl-tmp/models/GLM-4.5-0.6B-v3          --speculative-algorithm STANDALONE          --speculative-draft-model-quantization unquant           --disable-cuda-graph
+```
+
+
+20260422_173605 测ngram投机采样，比普通的快很多，最多可以是5x
+```bash
+python3 -m sglang.launch_server \
+  --model-path /root/autodl-tmp/models/glm-4-32b-0414-gptq-int4 \
+  --speculative-algorithm NGRAM \
+  --speculative-num-steps 5 \
+  --speculative-num-draft-tokens 8 \
+  --speculative-ngram-max-bfs-breadth 10 \
+  --speculative-ngram-match-type BFS \
+  --speculative-ngram-max-trie-depth 18 \
+  --quantization gptq_marlin \
+  --mem-fraction-static 0.88 \
+  --trust-remote-code --port 6006 --host 0.0.0.0 \
+        --disable-piecewise-cuda-graph --disable-cuda-graph
 ```
