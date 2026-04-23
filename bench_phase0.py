@@ -1,29 +1,26 @@
 #!/usr/bin/env python3
 """
-Phase 0 benchmark: single-config smoke test for GLM on 5090.
+Phase 0 基准测试脚本：单点配置 smoke test，用于 5090 + GLM 系列模型。
 
-Purpose:
-    Only answer one question per run: on this sglang server, at batch=1,
-    a fixed input/output length, how many tokens/s do we get?
+目标：每次运行只回答一个问题 —— 在当前这个 sglang server 上，batch=1、
+给定的 input/output 长度下，能跑多少 tok/s？
 
-    Run this script once against each server variant you want to compare:
-      1) baseline (no speculative decoding)
-      2) sglang native speculative (NGRAM / STANDALONE / EAGLE / ...)
-      3) your own variant
+对每个你想对比的 server 变体分别跑一次：
+  1) baseline    （无投机采样）
+  2) sglang 原生 （NGRAM / STANDALONE / EAGLE 等）
+  3) 自研方案    （比如 CPU draft）
 
-    Do NOT sweep (batch, seq) matrices here. Use bench_baseline.py for that
-    after Phase 0 is done.
+**不要**在这里就跑完整的 (batch, seq) 矩阵。那是 Phase 2 的事，用 bench_baseline.py。
 
-Usage:
+用法:
     python3 bench_phase0.py --label sglang_ngram
     python3 bench_phase0.py --label sglang_ngram --server-log /tmp/sglang_runs/ngram_xxx.log
     python3 bench_phase0.py --label my_ngram --input-chars 512 --output-tokens 128 --num-requests 10
 
-Notes on NGRAM:
-    NGRAM is trie-warmup sensitive: acceptance rate can swing from 0.1 (cold)
-    to 0.9 (hot). Warmup of 2 random prompts is NOT enough to characterize
-    steady state. Use --warmup 5 or higher, or pass a --fixed-prompt to avoid
-    trie-cold variance.
+NGRAM 的注意事项：
+    NGRAM 对 trie 冷热非常敏感，accept rate 能从 0.1（冷）跳到 0.9（热）。
+    默认 warmup=2 不够，建议 --warmup 5 或更多；或者用 --fixed-prompt 固定 prompt
+    彻底消除 trie 冷启动抖动。
 """
 
 import argparse
@@ -39,12 +36,14 @@ from datetime import datetime
 import requests
 
 
+# 匹配 sglang log 里 "Decode batch" 这一行的关键字段
 ACCEPT_LINE_RE = re.compile(
     r"accept len:\s*([\d.]+).*?accept rate:\s*([\d.]+).*?gen throughput \(token/s\):\s*([\d.]+)"
 )
 
 
 def random_prompt(n_chars: int) -> str:
+    """生成大约 n_chars 个字符的随机英文 prompt（词库小，方便控制长度）。"""
     words = [
         "speculative", "decoding", "transformer", "attention", "inference",
         "GPU", "CPU", "draft", "verify", "tokens", "latency", "throughput",
@@ -57,6 +56,7 @@ def random_prompt(n_chars: int) -> str:
 
 
 def one_request(base_url: str, prompt: str, max_tokens: int, timeout: int = 300) -> dict:
+    """向 sglang /v1/completions 发一次贪心请求，返回本次的 latency 相关指标。"""
     payload = {
         "model": "default",
         "prompt": prompt,
@@ -81,6 +81,7 @@ def one_request(base_url: str, prompt: str, max_tokens: int, timeout: int = 300)
 
 
 def summarize_samples(values, percentiles=(50, 90, 99)):
+    """对一组数值算 mean/median/stdev/min/max + 若干分位。空列表返回空 dict。"""
     if not values:
         return {}
     s = sorted(values)
@@ -98,13 +99,15 @@ def summarize_samples(values, percentiles=(50, 90, 99)):
 
 
 def parse_sglang_log_between(path, t_start_s, t_end_s):
-    """Parse sglang server log for 'Decode batch' lines between two unix timestamps.
-    Returns list of dicts with accept_len / accept_rate / gen_throughput."""
+    """解析 sglang server log，把 bench 时间窗口内的 "Decode batch" 行提出来。
+
+    返回 list of dicts，包含 accept_len / accept_rate / gen_throughput。这些是
+    sglang 自己汇报的 ground truth，比客户端算的更权威。"""
     hits = []
     try:
         with open(path, "r", errors="replace") as f:
             for line in f:
-                # Format: [2026-04-23 14:36:44] Decode batch, ... accept len: X, accept rate: Y, ... gen throughput (token/s): Z
+                # 格式：[2026-04-23 14:36:44] Decode batch, ... accept len: X, accept rate: Y, ... gen throughput (token/s): Z
                 if "Decode batch" not in line:
                     continue
                 ts_match = re.match(r"\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\]", line)
@@ -135,22 +138,21 @@ def main():
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=6006)
     ap.add_argument("--input-chars", type=int, default=512,
-                    help="Approximate prompt length in characters (not tokens).")
+                    help="prompt 长度（字符，不是 token）的近似值")
     ap.add_argument("--output-tokens", type=int, default=128)
     ap.add_argument("--num-requests", type=int, default=10,
-                    help="Total serial requests to average over.")
+                    help="串行发多少次请求，取平均")
     ap.add_argument("--warmup", type=int, default=2,
-                    help="Warmup requests (not counted). Bump to 5+ for NGRAM.")
+                    help="预热请求数（不计入统计）。NGRAM 场景下建议 5+")
     ap.add_argument("--label", default="unlabeled",
-                    help="Tag for the output directory, e.g. 'sglang_ngram'.")
+                    help="输出目录的 label，比如 sglang_ngram / cpu_draft")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--fixed-prompt", default=None,
-                    help="If set, use this exact prompt for every request (bypass random). "
-                         "Useful to get stable NGRAM acceptance.")
+                    help="如果设置，每次请求都用这个固定 prompt（绕过随机生成）。"
+                         "用来消除 NGRAM 的 trie 冷热抖动")
     ap.add_argument("--server-log", default=None,
-                    help="Path to sglang server log. If given, per-step accept rate / "
-                         "gen throughput reported by sglang are extracted for the "
-                         "bench window.")
+                    help="sglang server log 路径；如果提供，脚本会把 log 里属于本次 "
+                         "bench 时间窗口的 accept rate / gen throughput 汇总打印")
     args = ap.parse_args()
 
     random.seed(args.seed)
@@ -160,14 +162,15 @@ def main():
     out_dir = os.path.join("outputs", "phase0", f"{args.label}_{ts}")
     os.makedirs(out_dir, exist_ok=True)
 
+    # 先试探 server 是否能响应
     try:
         r = requests.get(f"http://{args.host}:{args.port}/v1/models", timeout=10)
         r.raise_for_status()
     except Exception as e:
-        raise SystemExit(f"Server probe failed at {args.host}:{args.port} - {e}")
+        raise SystemExit(f"探测 server 失败 {args.host}:{args.port} - {e}")
 
-    print(f"[{ts}] Phase 0 single-config bench  label={args.label}")
-    print(f"  target: {base_url}")
+    print(f"[{ts}] Phase 0 单点 bench  label={args.label}")
+    print(f"  target  : {base_url}")
     print(f"  input~{args.input_chars} chars, output={args.output_tokens} tokens, batch=1")
     print(f"  warmup={args.warmup}, runs={args.num_requests}, fixed_prompt={bool(args.fixed_prompt)}")
 
@@ -221,7 +224,7 @@ def main():
         "tok_per_s_per_run": tps_stats,
     }
 
-    # Optionally mine the sglang server log for ground-truth accept rate.
+    # 如果给了 server log，额外解析 sglang 自己汇报的 accept rate
     if args.server_log:
         hits = parse_sglang_log_between(args.server_log, bench_t_start, bench_t_end)
         if hits:
@@ -233,7 +236,7 @@ def main():
             }
 
     with open(os.path.join(out_dir, "summary.json"), "w") as f:
-        json.dump(summary, f, indent=2)
+        json.dump(summary, f, indent=2, ensure_ascii=False)
 
     with open(os.path.join(out_dir, "runs.csv"), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["run", "latency_s", "input_tokens", "output_tokens", "tpot_ms"])
@@ -241,27 +244,26 @@ def main():
         for i, r in enumerate(results):
             w.writerow({"run": i, **r})
 
-    # Console summary
     print()
     print("=" * 64)
     print(f" {args.label}")
     print("=" * 64)
-    print(f"  total output tokens : {total_out}")
-    print(f"  total wall time     : {t_all:.2f}s")
-    print(f"  aggregate tok/s     : {summary['aggregate']['avg_tok_per_s']:.1f}  (total_out / wall)")
+    print(f"  输出 token 总数      : {total_out}")
+    print(f"  总 wall 时间         : {t_all:.2f}s")
+    print(f"  聚合 tok/s           : {summary['aggregate']['avg_tok_per_s']:.1f}  (total_out / wall)")
     print()
-    print(f"  per-run tok/s       : "
+    print(f"  per-run tok/s        : "
           f"median {tps_stats['median']:.1f}  mean {tps_stats['mean']:.1f}  "
           f"min {tps_stats['min']:.1f}  max {tps_stats['max']:.1f}")
-    print(f"  per-run latency ms  : "
+    print(f"  per-run latency ms   : "
           f"median {lat_stats['median']:.0f}  mean {lat_stats['mean']:.0f}  "
           f"p90 {lat_stats['p90']:.0f}  p99 {lat_stats['p99']:.0f}")
-    print(f"  per-run TPOT ms/tok : "
+    print(f"  per-run TPOT ms/tok  : "
           f"median {tpot_stats['median']:.2f}  mean {tpot_stats['mean']:.2f}")
     if "sglang_log" in summary:
         s = summary["sglang_log"]
         print()
-        print(f"  sglang log ({s['num_decode_batches']} decode batches in window):")
+        print(f"  sglang log（窗口内 {s['num_decode_batches']} 个 decode batch）:")
         print(f"    accept len       : median {s['accept_len']['median']:.2f}  "
               f"mean {s['accept_len']['mean']:.2f}  "
               f"min {s['accept_len']['min']:.2f}  max {s['accept_len']['max']:.2f}")
@@ -272,7 +274,7 @@ def main():
               f"mean {s['gen_throughput']['mean']:.1f}  "
               f"min {s['gen_throughput']['min']:.1f}  max {s['gen_throughput']['max']:.1f}")
     print()
-    print(f"  saved to            : {out_dir}")
+    print(f"  输出到               : {out_dir}")
 
 
 if __name__ == "__main__":

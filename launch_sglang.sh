@@ -1,60 +1,67 @@
 #!/usr/bin/env bash
-# Helper to launch sglang server variants for Phase 0 comparison.
-# Each variant serves on port 6006. Kill the previous one before starting the next.
+# sglang server 启动脚本，用于 Phase 0 几种变体的性能对比。
+# 所有变体都在同一个端口上（默认 6006），切换前先 kill 掉前一个。
 #
-# Usage:
-#   ./launch_sglang.sh baseline
-#   ./launch_sglang.sh eagle       # needs --speculative-draft-model-path set below
-#   ./launch_sglang.sh ngram
-#   ./launch_sglang.sh standalone  # needs --speculative-draft-model-path set below
+# 用法:
+#   ./launch_sglang.sh baseline      # 无投机采样
+#   ./launch_sglang.sh ngram         # NGRAM 投机，不需要 draft 模型
+#   ./launch_sglang.sh standalone    # 独立小 draft 模型
+#   ./launch_sglang.sh eagle         # EAGLE 投机（需要配套 draft 权重）
+#   ./launch_sglang.sh eagle3        # EAGLE-3 投机（需要配套 draft 权重）
 #
-# Edit MODEL_PATH and DRAFT_MODEL_PATH before use.
+# 环境变量可以覆盖默认路径：
+#   MODEL_PATH       target 模型路径
+#   DRAFT_MODEL_PATH draft 模型路径（standalone / eagle 场景需要）
+#   PORT             监听端口（默认 6006）
+#   MEM_FRAC         显存分配比例（默认 0.88）
 
 set -euo pipefail
 
-MODEL_PATH="${MODEL_PATH:-/root/autodl-tmp/models/glm-4-9b-chat-int4}"      # adjust to actual path
-DRAFT_MODEL_PATH="${DRAFT_MODEL_PATH:-}"                                    # set for eagle / standalone
+MODEL_PATH="${MODEL_PATH:-/root/autodl-tmp/models/glm-4-32b-0414-gptq-int4}"
+DRAFT_MODEL_PATH="${DRAFT_MODEL_PATH:-/root/autodl-tmp/models/GLM-4.5-0.6B-v3}"
 HOST="0.0.0.0"
 PORT="${PORT:-6006}"
-MEM_FRAC="${MEM_FRAC:-0.85}"
+MEM_FRAC="${MEM_FRAC:-0.88}"
 
 VARIANT="${1:-baseline}"
 
+# 所有变体共享的基础参数（Blackwell 5090 上 cuda graph 有问题，全部禁用）
 COMMON_ARGS=(
   --model-path "$MODEL_PATH"
   --host "$HOST" --port "$PORT"
   --mem-fraction-static "$MEM_FRAC"
-  --disable-radix-cache       # simpler, more deterministic for Phase 0 bench
+  --quantization gptq_marlin
   --trust-remote-code
+  --disable-cuda-graph
+  --disable-piecewise-cuda-graph
 )
 
 case "$VARIANT" in
   baseline)
+    # 不开投机采样，作为对照基线
     exec python3 -m sglang.launch_server "${COMMON_ARGS[@]}"
     ;;
   ngram)
-    # NGRAM needs no draft model. Tune num-draft-tokens / trie-depth later.
+    # NGRAM 不需要 draft 模型；这组参数来自 2026-04-22 跑出 5x 的配置
     exec python3 -m sglang.launch_server "${COMMON_ARGS[@]}" \
       --speculative-algorithm NGRAM \
-      --speculative-num-draft-tokens 16 \
-      --speculative-ngram-max-trie-depth 18 \
-      --disable-overlap-schedule
+      --speculative-num-steps 5 \
+      --speculative-num-draft-tokens 8 \
+      --speculative-ngram-max-bfs-breadth 10 \
+      --speculative-ngram-match-type BFS \
+      --speculative-ngram-max-trie-depth 18
     ;;
   standalone)
-    if [[ -z "$DRAFT_MODEL_PATH" ]]; then
-      echo "DRAFT_MODEL_PATH is required for standalone"; exit 2
-    fi
+    # 独立 draft 模型；draft 权重全精度，target 走 gptq_marlin
     exec python3 -m sglang.launch_server "${COMMON_ARGS[@]}" \
       --speculative-algorithm STANDALONE \
       --speculative-draft-model-path "$DRAFT_MODEL_PATH" \
-      --speculative-num-steps 3 \
-      --speculative-eagle-topk 4 \
-      --speculative-num-draft-tokens 8
+      --speculative-draft-model-quantization unquant \
+      --speculative-num-steps 5 \
+      --speculative-eagle-topk 1
     ;;
   eagle)
-    if [[ -z "$DRAFT_MODEL_PATH" ]]; then
-      echo "DRAFT_MODEL_PATH is required for eagle"; exit 2
-    fi
+    # EAGLE 投机（需要配套 draft 权重，GLM-4 目前没有公开权重）
     exec python3 -m sglang.launch_server "${COMMON_ARGS[@]}" \
       --speculative-algorithm EAGLE \
       --speculative-draft-model-path "$DRAFT_MODEL_PATH" \
@@ -63,9 +70,7 @@ case "$VARIANT" in
       --speculative-num-draft-tokens 8
     ;;
   eagle3)
-    if [[ -z "$DRAFT_MODEL_PATH" ]]; then
-      echo "DRAFT_MODEL_PATH is required for eagle3"; exit 2
-    fi
+    # EAGLE-3 投机（需要配套 draft 权重）
     exec python3 -m sglang.launch_server "${COMMON_ARGS[@]}" \
       --speculative-algorithm EAGLE3 \
       --speculative-draft-model-path "$DRAFT_MODEL_PATH" \
@@ -74,7 +79,7 @@ case "$VARIANT" in
       --speculative-num-draft-tokens 8
     ;;
   *)
-    echo "usage: $0 {baseline|ngram|standalone|eagle|eagle3}"
+    echo "用法: $0 {baseline|ngram|standalone|eagle|eagle3}"
     exit 1
     ;;
 esac

@@ -4,46 +4,51 @@
 
 ## 当前阶段
 
-Phase 0 —— 跑通 sglang + 基线测量。
+Phase 0 跑通完成；Phase 1 CPU draft demo 已出结论（初步不可行，瓶颈在 draft 模型匹配度）。
 
 ## 文档
 
 | 文档 | 内容 |
 |---|---|
-| [docs/00_plan.md](docs/00_plan.md) | 总体计划、阶段划分、给老板的交付物 |
-| [docs/01_specdec_intro.md](docs/01_specdec_intro.md) | 投机采样入门：原理和直觉（零基础） |
-| [docs/02_sglang_analysis.md](docs/02_sglang_analysis.md) | sglang 投机采样源码分析（五种算法） |
-| [docs/03_cpu_draft_poc_plan.md](docs/03_cpu_draft_poc_plan.md) | CPU draft POC 实施计划（老板指定方向） |
+| [docs/00_plan.md](docs/00_plan.md) | 总体计划、阶段划分 |
+| [docs/01_specdec_intro.md](docs/01_specdec_intro.md) | 投机采样原理入门（零基础） |
+| [docs/02_sglang_analysis.md](docs/02_sglang_analysis.md) | sglang 投机采样源码分析 |
+| [docs/03_cpu_draft_poc_plan.md](docs/03_cpu_draft_poc_plan.md) | CPU draft POC 实施计划 |
+| [docs/04_cpu_draft_demo_findings.md](docs/04_cpu_draft_demo_findings.md) | **CPU draft demo 首次测量结论（给老板汇报用）** |
 
 ## 脚本
 
-- `launch_sglang.sh` — 启动 sglang server 的不同变体（baseline / ngram / standalone / eagle）
-- `bench_phase0.py` — 单点 benchmark，batch=1 单一配置（Phase 0 用）
-- `bench_baseline.py` — 完整的 batch × seq 矩阵 benchmark（Phase 2 再用）
+- `launch_sglang.sh` — 启动 sglang server 不同变体（baseline / ngram / standalone / eagle）
+- `bench_phase0.py` — 单点 benchmark（batch=1），对比各种 spec 方案用
+- `cpu_draft_demo.py` — CPU draft + GPU target 可行性 demo，分开测 prompt eval / gen 耗时
+- `bench_baseline.py` — 完整 (batch × seq) 矩阵 benchmark（Phase 2 再用）
 
-## Phase 0 快速上手
+## Phase 0 / Phase 1 快速上手
 
 ```bash
-# 1. 先编辑 launch_sglang.sh 里的 MODEL_PATH
-vim launch_sglang.sh
-
-# 2. 启动基线 server（在一个终端里）
+# 1. 启动 sglang（baseline 无投机）
 ./launch_sglang.sh baseline
 
-# 3. 在另一个终端跑单点 bench
+# 2. 在另一终端跑单点 bench（拿 baseline 数字）
 python3 bench_phase0.py --label baseline
 
-# 4. 停掉 baseline server，启 ngram
-./launch_sglang.sh ngram
-python3 bench_phase0.py --label sglang_ngram
+# 3. 跑 CPU draft demo（需要 sglang 是 baseline 模式）
+taskset -c 0-31 python3 cpu_draft_demo.py \
+  --draft-gguf /root/autodl-tmp/models/GLM-4.5-0.6B-v3-GGUF/GLM-4.5-DRAFT-0.6B-32k-Q4_0.gguf \
+  --target-model-path /root/autodl-tmp/models/glm-4-32b-0414-gptq-int4 \
+  --target-url http://127.0.0.1:6006/v1/completions
 
-# 5. 对比两份结果
-ls outputs/phase0/
+# 4. 切 NGRAM 对比
+./launch_sglang.sh ngram    # 先 kill 前一个
+python3 bench_phase0.py --label sglang_ngram --warmup 5
 ```
 
-结果保存到 `outputs/phase0/<label>_<timestamp>/summary.json`。
+> Xeon 8470Q 是双路 NUMA（0-51 / 52-103），CPU 任务一定要用 `taskset -c 0-31` 绑到
+> 单个 NUMA 节点，否则跨 socket 会让性能掉 10x+。
 
 ## 环境
 
-- Target：RTX 5090 + GLM-4-9B-int4
-- 后续：8/16 卡 A100 集群 + 全量 GLM5
+- GPU：RTX 5090（32GB，Blackwell sm_120）
+- CPU：Xeon Platinum 8470Q（208 线程，AMX_INT8 + AVX-512）
+- Target 模型：GLM-4-32B-0414-gptq-int4
+- Draft 模型：GLM-4.5-0.6B-v3（HF）或 GLM-4.5-DRAFT-0.6B-Q4_0.gguf（llama.cpp CPU）
