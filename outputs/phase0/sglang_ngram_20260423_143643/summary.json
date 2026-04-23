@@ -1,0 +1,15 @@
+{
+  "label": "sglang_ngram",
+  "timestamp": "20260423_143643",
+  "input_chars": 512,
+  "output_tokens_target": 128,
+  "num_requests": 10,
+  "batch": 1,
+  "total_wall_s": 7.453035444021225,
+  "total_output_tokens": 1280,
+  "avg_tok_per_s": 171.7421055640903,
+  "avg_latency_ms": 744.7040000930429,
+  "p50_latency_ms": 524.3590101599693,
+  "p99_latency_ms": 2707.10907317698,
+  "avg_tpot_ms": 5.818000000726897
+}
