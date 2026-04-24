@@ -125,10 +125,12 @@ def main():
     ap.add_argument("--warmup", type=int, default=3,
                     help="预热请求数（NGRAM/STANDALONE 都需要热 KV cache 和 tokenizer）")
     ap.add_argument("--label", default="standalone_realistic")
+    ap.add_argument("--out-root", default="outputs/standalone_realistic",
+                    help="输出目录根路径；NGRAM 调用时传 outputs/ngram_realistic 等")
     args = ap.parse_args()
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    out_dir = os.path.join("outputs", "standalone_realistic", f"{args.label}_{ts}")
+    out_dir = os.path.join(args.out_root, f"{args.label}_{ts}")
     os.makedirs(out_dir, exist_ok=True)
 
     # 试探 server

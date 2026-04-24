@@ -1,0 +1,143 @@
+{
+  "label": "ngram_realistic",
+  "timestamp": "20260424_112724",
+  "config": {
+    "url": "http://127.0.0.1:6006/v1/completions",
+    "server_log": "/tmp/sglang_runs/ngram_realistic_20260424_112621.log",
+    "max_tokens": 64,
+    "runs_per_prompt": 2,
+    "warmup": 3,
+    "num_prompts": 12
+  },
+  "aggregate": {
+    "num_decode_batches_total": 18,
+    "accept_len": {
+      "mean": 2.28,
+      "median": 2.435,
+      "min": 1.12,
+      "max": 5.22,
+      "stdev": 0.9407068681394357,
+      "n": 18
+    },
+    "accept_rate": {
+      "mean": 0.2866666666666667,
+      "median": 0.305,
+      "min": 0.14,
+      "max": 0.65,
+      "stdev": 0.11707212457686576,
+      "n": 18
+    },
+    "gen_throughput": {
+      "mean": 86.015,
+      "median": 89.365,
+      "min": 47.39,
+      "max": 201.83,
+      "stdev": 34.7697094761924,
+      "n": 18
+    }
+  },
+  "client_side": {
+    "tok_per_s_per_run": {
+      "mean": 173.42806896184416,
+      "median": 203.6572630916003,
+      "min": 45.13162986753621,
+      "max": 292.618081816298,
+      "stdev": 118.39659278793313,
+      "n": 24
+    },
+    "latency_ms_per_run": {
+      "mean": 709.6521710045636,
+      "median": 338.63404393196106,
+      "min": 218.7151238322258,
+      "max": 1418.0742017924786,
+      "stdev": 532.8933842748902,
+      "n": 24
+    }
+  },
+  "per_prompt": [
+    {
+      "prompt_idx": 0,
+      "prompt_preview": "def binary_search(arr, target):     left, ",
+      "mean_accept_rate": 0.5,
+      "mean_accept_len": 3.995,
+      "mean_gen_tps": 151.425
+    },
+    {
+      "prompt_idx": 1,
+      "prompt_preview": "写一个 Python 函数，输入一个字符串，返回其中每个单词出现的次数：  def ",
+      "mean_accept_rate": 0.39,
+      "mean_accept_len": 3.1141666666666667,
+      "mean_gen_tps": 115.01333333333334
+    },
+    {
+      "prompt_idx": 2,
+      "prompt_preview": "Complete the following Rust function that ",
+      "mean_accept_rate": 0.26583333333333337,
+      "mean_accept_len": 2.1166666666666663,
+      "mean_gen_tps": 79.49
+    },
+    {
+      "prompt_idx": 3,
+      "prompt_preview": "请解释一下什么是 Transformer 架构的注意力机制，以及它为什么在自然语言处",
+      "mean_accept_rate": 0.26,
+      "mean_accept_len": 2.065,
+      "mean_gen_tps": 78.13833333333334
+    },
+    {
+      "prompt_idx": 4,
+      "prompt_preview": "如果我在训练大语言模型时遇到 loss 突然变成 NaN，通常有哪些可能的原因？应该",
+      "mean_accept_rate": 0.24333333333333335,
+      "mean_accept_len": 1.9333333333333331,
+      "mean_gen_tps": 73.23833333333334
+    },
+    {
+      "prompt_idx": 5,
+      "prompt_preview": "量化感知训练（QAT）和后训练量化（PTQ）的主要区别是什么？实际工程中哪种更常用？",
+      "mean_accept_rate": 0.21666666666666667,
+      "mean_accept_len": 1.7291666666666665,
+      "mean_gen_tps": 66.46916666666667
+    },
+    {
+      "prompt_idx": 6,
+      "prompt_preview": "The historical impact of the Industrial Re",
+      "mean_accept_rate": 0.29000000000000004,
+      "mean_accept_len": 2.291666666666667,
+      "mean_gen_tps": 84.035
+    },
+    {
+      "prompt_idx": 7,
+      "prompt_preview": "When designing a distributed database syst",
+      "mean_accept_rate": 0.255,
+      "mean_accept_len": 2.0125,
+      "mean_gen_tps": 76.02000000000001
+    },
+    {
+      "prompt_idx": 8,
+      "prompt_preview": "写一个 200 字左右的短故事，讲一个迷路的机器人在森林里遇到一只会说话的乌龟。",
+      "mean_accept_rate": 0.2475,
+      "mean_accept_len": 1.9583333333333333,
+      "mean_gen_tps": 72.8125
+    },
+    {
+      "prompt_idx": 9,
+      "prompt_preview": "Generate a JSON object describing a user p",
+      "mean_accept_rate": 0.24916666666666665,
+      "mean_accept_len": 1.9925000000000002,
+      "mean_gen_tps": 76.63499999999999
+    },
+    {
+      "prompt_idx": 10,
+      "prompt_preview": "My laptop is overheating whenever I run do",
+      "mean_accept_rate": 0.25416666666666665,
+      "mean_accept_len": 2.015833333333333,
+      "mean_gen_tps": 75.82833333333333
+    },
+    {
+      "prompt_idx": 11,
+      "prompt_preview": "请把下面这句话翻译成流畅的英文：“投机采样的核心思想是先用一个便宜的机制猜测未来几个",
+      "mean_accept_rate": 0.26833333333333337,
+      "mean_accept_len": 2.131666666666667,
+      "mean_gen_tps": 81.66
+    }
+  ]
+}

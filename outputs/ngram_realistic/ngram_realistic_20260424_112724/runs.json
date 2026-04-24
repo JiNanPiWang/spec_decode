@@ -1,0 +1,438 @@
+{
+  "records": [
+    {
+      "prompt_idx": 0,
+      "run": 0,
+      "prompt_preview": "def binary_search(arr, target):     left, ",
+      "n_out": 64,
+      "latency_s": 0.2187151238322258,
+      "client_tok_per_s": 292.618081816298,
+      "t_req_start": 1777001246.2564688,
+      "t_req_end": 1777001246.475327
+    },
+    {
+      "prompt_idx": 0,
+      "run": 1,
+      "prompt_preview": "def binary_search(arr, target):     left, ",
+      "n_out": 64,
+      "latency_s": 0.21910355798900127,
+      "client_tok_per_s": 292.09931863914653,
+      "t_req_start": 1777001246.5254316,
+      "t_req_end": 1777001246.744733
+    },
+    {
+      "prompt_idx": 1,
+      "run": 0,
+      "prompt_preview": "写一个 Python 函数，输入一个字符串，返回其中每个单词出现的次数：  def ",
+      "n_out": 64,
+      "latency_s": 1.2019261922687292,
+      "client_tok_per_s": 53.24786198326789,
+      "t_req_start": 1777001246.794838,
+      "t_req_end": 1777001247.9970255
+    },
+    {
+      "prompt_idx": 1,
+      "run": 1,
+      "prompt_preview": "写一个 Python 函数，输入一个字符串，返回其中每个单词出现的次数：  def ",
+      "n_out": 64,
+      "latency_s": 0.220546530559659,
+      "client_tok_per_s": 290.18819673831894,
+      "t_req_start": 1777001248.0471375,
+      "t_req_end": 1777001248.267893
+    },
+    {
+      "prompt_idx": 2,
+      "run": 0,
+      "prompt_preview": "Complete the following Rust function that ",
+      "n_out": 64,
+      "latency_s": 0.9431739747524261,
+      "client_tok_per_s": 67.85598597204654,
+      "t_req_start": 1777001248.3179963,
+      "t_req_end": 1777001249.2613854
+    },
+    {
+      "prompt_idx": 2,
+      "run": 1,
+      "prompt_preview": "Complete the following Rust function that ",
+      "n_out": 64,
+      "latency_s": 0.22153332456946373,
+      "client_tok_per_s": 288.89558771521183,
+      "t_req_start": 1777001249.3114865,
+      "t_req_end": 1777001249.5332744
+    },
+    {
+      "prompt_idx": 3,
+      "run": 0,
+      "prompt_preview": "请解释一下什么是 Transformer 架构的注意力机制，以及它为什么在自然语言处",
+      "n_out": 64,
+      "latency_s": 1.3270956724882126,
+      "client_tok_per_s": 48.225611255294375,
+      "t_req_start": 1777001249.5833833,
+      "t_req_end": 1777001250.9107566
+    },
+    {
+      "prompt_idx": 3,
+      "run": 1,
+      "prompt_preview": "请解释一下什么是 Transformer 架构的注意力机制，以及它为什么在自然语言处",
+      "n_out": 64,
+      "latency_s": 0.22236402705311775,
+      "client_tok_per_s": 287.8163381377863,
+      "t_req_start": 1777001250.960871,
+      "t_req_end": 1777001251.1834764
+    },
+    {
+      "prompt_idx": 4,
+      "run": 0,
+      "prompt_preview": "如果我在训练大语言模型时遇到 loss 突然变成 NaN，通常有哪些可能的原因？应该",
+      "n_out": 64,
+      "latency_s": 1.3696449659764767,
+      "client_tok_per_s": 46.727437832308425,
+      "t_req_start": 1777001251.233586,
+      "t_req_end": 1777001252.603496
+    },
+    {
+      "prompt_idx": 4,
+      "run": 1,
+      "prompt_preview": "如果我在训练大语言模型时遇到 loss 突然变成 NaN，通常有哪些可能的原因？应该",
+      "n_out": 64,
+      "latency_s": 0.4294971004128456,
+      "client_tok_per_s": 149.01148328703795,
+      "t_req_start": 1777001252.6536028,
+      "t_req_end": 1777001253.0833185
+    },
+    {
+      "prompt_idx": 5,
+      "run": 0,
+      "prompt_preview": "量化感知训练（QAT）和后训练量化（PTQ）的主要区别是什么？实际工程中哪种更常用？",
+      "n_out": 64,
+      "latency_s": 1.2446455415338278,
+      "client_tok_per_s": 51.42026212629997,
+      "t_req_start": 1777001253.1334186,
+      "t_req_end": 1777001254.3783035
+    },
+    {
+      "prompt_idx": 5,
+      "run": 1,
+      "prompt_preview": "量化感知训练（QAT）和后训练量化（PTQ）的主要区别是什么？实际工程中哪种更常用？",
+      "n_out": 64,
+      "latency_s": 0.2220655083656311,
+      "client_tok_per_s": 288.20324448866654,
+      "t_req_start": 1777001254.428409,
+      "t_req_end": 1777001254.6507013
+    },
+    {
+      "prompt_idx": 6,
+      "run": 0,
+      "prompt_preview": "The historical impact of the Industrial Re",
+      "n_out": 64,
+      "latency_s": 1.3603685274720192,
+      "client_tok_per_s": 47.04607516827192,
+      "t_req_start": 1777001254.700811,
+      "t_req_end": 1777001256.0613985
+    },
+    {
+      "prompt_idx": 6,
+      "run": 1,
+      "prompt_preview": "The historical impact of the Industrial Re",
+      "n_out": 64,
+      "latency_s": 0.21998609602451324,
+      "client_tok_per_s": 290.92747749325224,
+      "t_req_start": 1777001256.1114974,
+      "t_req_end": 1777001256.3316746
+    },
+    {
+      "prompt_idx": 7,
+      "run": 0,
+      "prompt_preview": "When designing a distributed database syst",
+      "n_out": 64,
+      "latency_s": 1.4180742017924786,
+      "client_tok_per_s": 45.13162986753621,
+      "t_req_start": 1777001256.3817713,
+      "t_req_end": 1777001257.8001137
+    },
+    {
+      "prompt_idx": 7,
+      "run": 1,
+      "prompt_preview": "When designing a distributed database syst",
+      "n_out": 64,
+      "latency_s": 0.22243580594658852,
+      "client_tok_per_s": 287.72346128198325,
+      "t_req_start": 1777001257.8502212,
+      "t_req_end": 1777001258.0728922
+    },
+    {
+      "prompt_idx": 8,
+      "run": 0,
+      "prompt_preview": "写一个 200 字左右的短故事，讲一个迷路的机器人在森林里遇到一只会说话的乌龟。",
+      "n_out": 64,
+      "latency_s": 1.3907685410231352,
+      "client_tok_per_s": 46.01772193733808,
+      "t_req_start": 1777001258.1229954,
+      "t_req_end": 1777001259.5141618
+    },
+    {
+      "prompt_idx": 8,
+      "run": 1,
+      "prompt_preview": "写一个 200 字左右的短故事，讲一个迷路的机器人在森林里遇到一只会说话的乌龟。",
+      "n_out": 64,
+      "latency_s": 0.2189384624361992,
+      "client_tok_per_s": 292.31958280811546,
+      "t_req_start": 1777001259.5642915,
+      "t_req_end": 1777001259.7834718
+    },
+    {
+      "prompt_idx": 9,
+      "run": 0,
+      "prompt_preview": "Generate a JSON object describing a user p",
+      "n_out": 64,
+      "latency_s": 1.1342213433235884,
+      "client_tok_per_s": 56.42637601269427,
+      "t_req_start": 1777001259.8335764,
+      "t_req_end": 1777001260.9680707
+    },
+    {
+      "prompt_idx": 9,
+      "run": 1,
+      "prompt_preview": "Generate a JSON object describing a user p",
+      "n_out": 64,
+      "latency_s": 0.22039506770670414,
+      "client_tok_per_s": 290.3876237610248,
+      "t_req_start": 1777001261.0181787,
+      "t_req_end": 1777001261.2387924
+    },
+    {
+      "prompt_idx": 10,
+      "run": 0,
+      "prompt_preview": "My laptop is overheating whenever I run do",
+      "n_out": 64,
+      "latency_s": 1.3510624058544636,
+      "client_tok_per_s": 47.37012866516995,
+      "t_req_start": 1777001261.2888925,
+      "t_req_end": 1777001262.640212
+    },
+    {
+      "prompt_idx": 10,
+      "run": 1,
+      "prompt_preview": "My laptop is overheating whenever I run do",
+      "n_out": 64,
+      "latency_s": 0.22039301320910454,
+      "client_tok_per_s": 290.3903307464564,
+      "t_req_start": 1777001262.690321,
+      "t_req_end": 1777001262.9109223
+    },
+    {
+      "prompt_idx": 11,
+      "run": 0,
+      "prompt_preview": "请把下面这句话翻译成流畅的英文：“投机采样的核心思想是先用一个便宜的机制猜测未来几个",
+      "n_out": 64,
+      "latency_s": 1.186926132068038,
+      "client_tok_per_s": 53.92079445457128,
+      "t_req_start": 1777001262.9610267,
+      "t_req_end": 1777001264.1482189
+    },
+    {
+      "prompt_idx": 11,
+      "run": 1,
+      "prompt_preview": "请把下面这句话翻译成流畅的英文：“投机采样的核心思想是先用一个便宜的机制猜测未来几个",
+      "n_out": 64,
+      "latency_s": 0.2477709874510765,
+      "client_tok_per_s": 258.30304289616265,
+      "t_req_start": 1777001264.1983314,
+      "t_req_end": 1777001264.4463537
+    }
+  ],
+  "per_req_hits": [
+    {
+      "prompt_idx": 0,
+      "run": 0,
+      "n_decode_batches": 2,
+      "accept_len_mean": 3.995,
+      "accept_rate_mean": 0.5,
+      "gen_tps_mean": 151.425
+    },
+    {
+      "prompt_idx": 0,
+      "run": 1,
+      "n_decode_batches": 2,
+      "accept_len_mean": 3.995,
+      "accept_rate_mean": 0.5,
+      "gen_tps_mean": 151.425
+    },
+    {
+      "prompt_idx": 1,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 3.513333333333333,
+      "accept_rate_mean": 0.44,
+      "gen_tps_mean": 131.84666666666666
+    },
+    {
+      "prompt_idx": 1,
+      "run": 1,
+      "n_decode_batches": 2,
+      "accept_len_mean": 2.715,
+      "accept_rate_mean": 0.33999999999999997,
+      "gen_tps_mean": 98.18
+    },
+    {
+      "prompt_idx": 2,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 2.203333333333333,
+      "accept_rate_mean": 0.27666666666666667,
+      "gen_tps_mean": 82.13
+    },
+    {
+      "prompt_idx": 2,
+      "run": 1,
+      "n_decode_batches": 2,
+      "accept_len_mean": 2.03,
+      "accept_rate_mean": 0.255,
+      "gen_tps_mean": 76.85
+    },
+    {
+      "prompt_idx": 3,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 2.203333333333333,
+      "accept_rate_mean": 0.27666666666666667,
+      "gen_tps_mean": 82.08666666666667
+    },
+    {
+      "prompt_idx": 3,
+      "run": 1,
+      "n_decode_batches": 3,
+      "accept_len_mean": 1.9266666666666665,
+      "accept_rate_mean": 0.24333333333333335,
+      "gen_tps_mean": 74.19
+    },
+    {
+      "prompt_idx": 4,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 1.9333333333333331,
+      "accept_rate_mean": 0.24333333333333335,
+      "gen_tps_mean": 73.31
+    },
+    {
+      "prompt_idx": 4,
+      "run": 1,
+      "n_decode_batches": 3,
+      "accept_len_mean": 1.9333333333333331,
+      "accept_rate_mean": 0.24333333333333335,
+      "gen_tps_mean": 73.16666666666667
+    },
+    {
+      "prompt_idx": 5,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 1.6233333333333333,
+      "accept_rate_mean": 0.20333333333333334,
+      "gen_tps_mean": 62.65333333333333
+    },
+    {
+      "prompt_idx": 5,
+      "run": 1,
+      "n_decode_batches": 2,
+      "accept_len_mean": 1.835,
+      "accept_rate_mean": 0.23,
+      "gen_tps_mean": 70.285
+    },
+    {
+      "prompt_idx": 6,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 2.0633333333333335,
+      "accept_rate_mean": 0.26,
+      "gen_tps_mean": 77.16
+    },
+    {
+      "prompt_idx": 6,
+      "run": 1,
+      "n_decode_batches": 1,
+      "accept_len_mean": 2.52,
+      "accept_rate_mean": 0.32,
+      "gen_tps_mean": 90.91
+    },
+    {
+      "prompt_idx": 7,
+      "run": 0,
+      "n_decode_batches": 2,
+      "accept_len_mean": 2.285,
+      "accept_rate_mean": 0.29000000000000004,
+      "gen_tps_mean": 84.905
+    },
+    {
+      "prompt_idx": 7,
+      "run": 1,
+      "n_decode_batches": 2,
+      "accept_len_mean": 1.7399999999999998,
+      "accept_rate_mean": 0.22,
+      "gen_tps_mean": 67.135
+    },
+    {
+      "prompt_idx": 8,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 1.9766666666666666,
+      "accept_rate_mean": 0.25,
+      "gen_tps_mean": 74.03
+    },
+    {
+      "prompt_idx": 8,
+      "run": 1,
+      "n_decode_batches": 2,
+      "accept_len_mean": 1.94,
+      "accept_rate_mean": 0.245,
+      "gen_tps_mean": 71.595
+    },
+    {
+      "prompt_idx": 9,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 2.1,
+      "accept_rate_mean": 0.2633333333333333,
+      "gen_tps_mean": 79.41999999999999
+    },
+    {
+      "prompt_idx": 9,
+      "run": 1,
+      "n_decode_batches": 2,
+      "accept_len_mean": 1.885,
+      "accept_rate_mean": 0.235,
+      "gen_tps_mean": 73.85
+    },
+    {
+      "prompt_idx": 10,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 2.0966666666666667,
+      "accept_rate_mean": 0.2633333333333333,
+      "gen_tps_mean": 79.67666666666666
+    },
+    {
+      "prompt_idx": 10,
+      "run": 1,
+      "n_decode_batches": 2,
+      "accept_len_mean": 1.935,
+      "accept_rate_mean": 0.245,
+      "gen_tps_mean": 71.98
+    },
+    {
+      "prompt_idx": 11,
+      "run": 0,
+      "n_decode_batches": 3,
+      "accept_len_mean": 2.033333333333333,
+      "accept_rate_mean": 0.2566666666666667,
+      "gen_tps_mean": 76.82
+    },
+    {
+      "prompt_idx": 11,
+      "run": 1,
+      "n_decode_batches": 1,
+      "accept_len_mean": 2.23,
+      "accept_rate_mean": 0.28,
+      "gen_tps_mean": 86.5
+    }
+  ]
+}
