@@ -1,0 +1,283 @@
+{
+  "label": "cpu_draft_F16_multiround",
+  "timestamp": "20260423_171928",
+  "config": {
+    "n_draft": 5,
+    "n_rounds_per_prompt": 10,
+    "num_prompts": 12,
+    "total_rounds": 120,
+    "cpu_threads": 32,
+    "draft_gguf": "/root/autodl-tmp/models/GLM-4.5-0.6B-v3-GGUF/GLM-4.5-DRAFT-0.6B-F16.gguf",
+    "target_url": "http://127.0.0.1:6006/v1/completions"
+  },
+  "overall": {
+    "mean_match_len": 2.3666666666666667,
+    "mean_accept_rate": 0.47333333333333333,
+    "match_len_distribution": {
+      "mean": 2.3666666666666667,
+      "median": 2.0,
+      "min": 0,
+      "max": 5,
+      "stdev": 2.1021530912489745,
+      "n": 120
+    },
+    "draft_gen_s_per_round": {
+      "mean": 2.8241268632002177,
+      "median": 0.11209041066467762,
+      "min": 0.06443773582577705,
+      "max": 45.964920872822404,
+      "stdev": 7.8290477469792465,
+      "n": 120
+    },
+    "target_latency_s_per_round": {
+      "mean": 0.2212542994879186,
+      "median": 0.14617496263235807,
+      "min": 0.13834984973073006,
+      "max": 1.010070089250803,
+      "stdev": 0.21689263106311,
+      "n": 120
+    }
+  },
+  "per_prompt": [
+    {
+      "prompt_idx": 0,
+      "prompt_preview": "def binary_search(arr, target):     left, ",
+      "n_rounds": 10,
+      "mean_match_len": 4.4,
+      "mean_accept_rate": 0.8800000000000001,
+      "match_len_distribution": [
+        0,
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "mean_draft_gen_tps": 0.3392864264253082
+    },
+    {
+      "prompt_idx": 1,
+      "prompt_preview": "写一个 Python 函数，输入一个字符串，返回其中每个单词出现的次数：  def ",
+      "n_rounds": 10,
+      "mean_match_len": 3.1,
+      "mean_accept_rate": 0.62,
+      "match_len_distribution": [
+        0,
+        1,
+        1,
+        2,
+        3,
+        4,
+        5,
+        5,
+        5,
+        5
+      ],
+      "mean_draft_gen_tps": 13.147588254162462
+    },
+    {
+      "prompt_idx": 2,
+      "prompt_preview": "Complete the following Rust function that ",
+      "n_rounds": 10,
+      "mean_match_len": 4,
+      "mean_accept_rate": 0.8,
+      "match_len_distribution": [
+        0,
+        0,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "mean_draft_gen_tps": 44.11265626061327
+    },
+    {
+      "prompt_idx": 3,
+      "prompt_preview": "请解释一下什么是 Transformer 架构的注意力机制，以及它为什么在自然语言处",
+      "n_rounds": 10,
+      "mean_match_len": 2,
+      "mean_accept_rate": 0.4,
+      "match_len_distribution": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        4,
+        4,
+        5
+      ],
+      "mean_draft_gen_tps": 44.337182439518244
+    },
+    {
+      "prompt_idx": 4,
+      "prompt_preview": "如果我在训练大语言模型时遇到 loss 突然变成 NaN，通常有哪些可能的原因？应该",
+      "n_rounds": 10,
+      "mean_match_len": 2.2,
+      "mean_accept_rate": 0.44000000000000006,
+      "match_len_distribution": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        5,
+        5,
+        5
+      ],
+      "mean_draft_gen_tps": 42.73112039578041
+    },
+    {
+      "prompt_idx": 5,
+      "prompt_preview": "量化感知训练（QAT）和后训练量化（PTQ）的主要区别是什么？实际工程中哪种更常用？",
+      "n_rounds": 10,
+      "mean_match_len": 2.3,
+      "mean_accept_rate": 0.45999999999999996,
+      "match_len_distribution": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        5,
+        5,
+        5,
+        5
+      ],
+      "mean_draft_gen_tps": 46.18211655513906
+    },
+    {
+      "prompt_idx": 6,
+      "prompt_preview": "The historical impact of the Industrial Re",
+      "n_rounds": 10,
+      "mean_match_len": 0.6,
+      "mean_accept_rate": 0.12,
+      "match_len_distribution": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        3
+      ],
+      "mean_draft_gen_tps": 60.59594902844734
+    },
+    {
+      "prompt_idx": 7,
+      "prompt_preview": "When designing a distributed database syst",
+      "n_rounds": 10,
+      "mean_match_len": 1.4,
+      "mean_accept_rate": 0.27999999999999997,
+      "match_len_distribution": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3
+      ],
+      "mean_draft_gen_tps": 50.88215968729915
+    },
+    {
+      "prompt_idx": 8,
+      "prompt_preview": "写一个 200 字左右的短故事，讲一个迷路的机器人在森林里遇到一只会说话的乌龟。",
+      "n_rounds": 10,
+      "mean_match_len": 1,
+      "mean_accept_rate": 0.2,
+      "match_len_distribution": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "mean_draft_gen_tps": 46.17861712432382
+    },
+    {
+      "prompt_idx": 9,
+      "prompt_preview": "Generate a JSON object describing a user p",
+      "n_rounds": 10,
+      "mean_match_len": 4.2,
+      "mean_accept_rate": 0.8400000000000001,
+      "match_len_distribution": [
+        0,
+        2,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "mean_draft_gen_tps": 43.30570259292168
+    },
+    {
+      "prompt_idx": 10,
+      "prompt_preview": "My laptop is overheating whenever I run do",
+      "n_rounds": 10,
+      "mean_match_len": 1.4,
+      "mean_accept_rate": 0.27999999999999997,
+      "match_len_distribution": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        2,
+        4,
+        5
+      ],
+      "mean_draft_gen_tps": 31.010180606171392
+    },
+    {
+      "prompt_idx": 11,
+      "prompt_preview": "请把下面这句话翻译成流畅的英文：“投机采样的核心思想是先用一个便宜的机制猜测未来几个",
+      "n_rounds": 10,
+      "mean_match_len": 1.8,
+      "mean_accept_rate": 0.36,
+      "match_len_distribution": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        3,
+        3,
+        5,
+        5
+      ],
+      "mean_draft_gen_tps": 38.26523943379086
+    }
+  ]
+}

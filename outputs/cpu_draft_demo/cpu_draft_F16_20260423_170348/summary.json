@@ -1,0 +1,105 @@
+{
+  "label": "cpu_draft_F16",
+  "timestamp": "20260423_170348",
+  "config": {
+    "n_draft": 5,
+    "n_iters": 24,
+    "cpu_threads": 32,
+    "n_ctx": 4096,
+    "draft_gguf": "/root/autodl-tmp/models/GLM-4.5-0.6B-v3-GGUF/GLM-4.5-DRAFT-0.6B-F16.gguf",
+    "target_url": "http://127.0.0.1:6006/v1/completions",
+    "target_model_path": "/root/autodl-tmp/models/glm-4-32b-0414-gptq-int4"
+  },
+  "accept": {
+    "mean_match_len": 0.3333333333333333,
+    "mean_accept_rate": 0.06666666666666667,
+    "match_len_distribution": {
+      "mean": 0.3333333333333333,
+      "median": 0.0,
+      "min": 0,
+      "max": 4,
+      "stdev": 1.1293194051465598,
+      "n": 24
+    },
+    "per_iter_match_len": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0
+    ]
+  },
+  "draft_cpu": {
+    "prompt_eval_ms": {
+      "mean": 529.2730474223694,
+      "median": 535.8702056109905,
+      "min": 428.5828806459904,
+      "max": 591.574689373374,
+      "stdev": 45.92329049447054,
+      "n": 24
+    },
+    "gen_total_ms_per_K": {
+      "mean": 457.6068922566871,
+      "median": 126.60148460417986,
+      "min": 70.16661390662193,
+      "max": 3039.529364556074,
+      "stdev": 849.3677379856248,
+      "n": 24
+    },
+    "gen_tok_per_s_steady": {
+      "mean": 38.312712629803876,
+      "median": 39.494248827027,
+      "min": 1.6449915102992447,
+      "max": 71.25896094478813,
+      "stdev": 20.651153959078588,
+      "n": 24
+    }
+  },
+  "target_gpu": {
+    "tok_per_s": {
+      "mean": 34.08865373860392,
+      "median": 34.36146033414857,
+      "min": 30.382678944914527,
+      "max": 36.2798843949026,
+      "stdev": 1.42131723870225,
+      "n": 24
+    },
+    "per_tok_ms": {
+      "mean": 29.38643720311423,
+      "median": 29.10238392651081,
+      "min": 27.563483640551567,
+      "max": 32.913490012288094,
+      "stdev": 1.282375239861064,
+      "n": 24
+    }
+  },
+  "speedup_estimates": {
+    "naive_speedup": 0.05610849223467502,
+    "steady_speedup": 0.24921139683201007,
+    "overlap_speedup": 0.30649860615773505,
+    "baseline_per_iter_s": 0.03880317856868108,
+    "naive_iter_s": 0.6915740741416811,
+    "steady_iter_s": 0.15570386853069068,
+    "overlap_iter_s": 0.12660148460417986
+  },
+  "notes": "speedup 的三档解释：naive=每轮都 prompt eval，最差；steady=prompt eval 已经在上一轮摊薄（接近真实集成），overlap=CPU draft 与 GPU verify 并行（需要架构支持，是 phase 1 步骤 4 的目标）。"
+}

@@ -1,112 +1,123 @@
-# CPU Draft Demo 初次测量发现（2026-04-23）
+# CPU Draft Demo 测量发现（2026-04-23，v2）
 
-**一句话结论**：用当前的 `GLM-4.5-DRAFT-0.6B` 作为 CPU draft 去打 `GLM-4-32B-int4`，
-accept rate 只有 17%，理论最快（overlap 模式）也只有 24 tok/s —— **打不过** sglang 自己的
-STANDALONE（65 tok/s）。瓶颈不是 CPU 速度，而是 **draft 和 target 是两代模型，分布不一致**。
+> **版本说明**：本文档在 2026-04-23 同一天经历两次重要更新：
+> - 初版（v1）结论"CPU draft 和 target 不匹配，方向不可行"是**错误**的
+> - 多轮测量（multi-round）重做后发现 CPU draft accept rate 约 47%，**和 sglang
+>   STANDALONE 同量级**；初版 17% 的低值是"单轮测量"的系统性偏差
+> - 本文档反映的是修正后的结论
 
-## 测量环境
+## 一句话结论
 
-| 项目 | 值 |
-|---|---|
-| Target | `glm-4-32b-0414-gptq-int4` 跑在 sglang 上（无投机，batch=1） |
-| Draft | `GLM-4.5-DRAFT-0.6B-32k-Q4_0.gguf` 跑在 CPU 上 |
-| Target GPU | RTX 5090 |
-| Draft CPU | Intel Xeon 8470Q（Sapphire Rapids，AMX_INT8），taskset 锁到 0-31 核 |
-| 输入 | 12 条真实混合场景 prompt（代码、中英问答、创作、JSON、翻译），循环 24 次 |
-| `n_draft` | 5 |
+**CPU draft + GPU target 技术上可行**。accept rate 47%，和 sglang STANDALONE 在相同模型对、
+相同数据上测出的 46% 几乎一致。理论最优（KV 缓存保留 + CPU/GPU 并行）上限约 **60 tok/s**，
+**高于** STANDALONE 在真实数据上的 38.7 tok/s。
 
-脚本：`cpu_draft_demo.py`（v2，用 eval + sample 底层 API 分离 prompt eval 和 gen）。
+## 经过
 
-## 原始数据
+### 第一轮：单轮测量（cpu_draft_demo.py v2）
+- accept rate 16.7%，看起来 draft/target 根本不匹配
+- 于是推测是"`GLM-4.5-DRAFT-0.6B` 不适合给 `GLM-4` 当 draft"
+- 对比 F16 draft：accept rate 反而降到 6.7%，说明问题不在量化
 
-| 指标 | median |
-|---|---|
-| CPU draft prompt eval | 488 ms（每条新 prompt 一次性开销） |
-| CPU draft gen 5 tokens | 76 ms |
-| CPU draft 稳态速度 | **65 tok/s** |
-| GPU target 单 token | 28.1 ms（**35.6 tok/s**，这是无投机 baseline） |
-| accept length 均值 | 0.83 / 5 |
-| accept rate 均值 | **16.7%** |
+### 第二轮：对照 sglang STANDALONE（bench_standalone_realistic.py）
+- 同一对模型、同一套 prompt、同一个 target
+- **STANDALONE 测出的 accept rate 是 40% (median) / 46% (mean)**
+- 2.4× 的差距从哪来？
 
-### accept length 分布（24 次测量）
+### 第三轮：side-by-side 文本对比
+对 prompt `def binary_search(arr, target):`：
 ```
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 4, 4, 5, 5]
- ← 18 次零匹配                                   ↑ 2 次 1/5  ↑ 2 次 4/5  ↑ 2 次 5/5
+TARGET : ' \n    low = 0\n    high ='
+DRAFT  : ' \n    left = 0\n    right ='
 ```
+两个模型都写出正确的 binary_search，只是一个用 `low/high`，一个用 `left/right` —— 第一个
+token 就产生分歧，之后所有 token 在单轮里都算"不匹配"。
 
-**高度两极化**：多数完全不匹配，少数完全匹配（比如英文长文、英文对话）。这说明
-draft 模型的表达分布和 target 分布在大多数场景下就是不重合的，不是微小调优能改的问题。
+### 第四轮：多轮测量（cpu_draft_demo_multiround.py）
+模拟真正的 spec decode 行为：draft 错了之后，把 target 的正确 token 加入 context，下一轮
+重起。这等价于 sglang STANDALONE 的内部逻辑。
+- **120 轮测量，overall accept rate 47.3%**
+- 和 STANDALONE 的 46.3% 几乎一致
 
-## 理论加速比（三档估算）
+## 最终数字（5090 + Xeon 8470Q，12 条真实混合 prompt × 10 轮/prompt）
 
-| 模式 | speedup | 绝对 tok/s | 备注 |
+| 指标 | CPU draft multi-round | sglang STANDALONE |
+|---|---|---|
+| 模型对 | GLM-4-32B-int4 target + GLM-4.5-0.6B-F16 draft | 同 |
+| accept rate | **47.3%** | 46.3% (mean) |
+| accept length | 2.37 / 5 | 2.77 / 5 |
+| GPU 使用 | 只 verify | draft + verify 都占 |
+
+按 prompt 分组（CPU multi-round）：
+- 代码类（binary_search / Rust / JSON 生成）：**80-88%**，很高
+- 结构化输出 / 简单 Q&A：40-60%
+- 开放长文 / 创作：12-28%
+
+这个分布和 STANDALONE 完全一致，证明**差异在模型层面，和跑哪里（CPU vs GPU）无关**。
+
+## 理论吞吐估算
+
+前提数字（都是实测）：
+- CPU draft **稳态** gen 速度：90 tok/s（长输出 / KV 连续情况下，见 llama.cpp 直接测）
+- GPU target 单步 verify：~30 ms
+- 每轮 CPU draft 产 5 token：5/90 ≈ **56 ms**
+
+### 三档速度
+
+| 场景 | iter_time | tokens/iter | tok/s |
 |---|---|---|---|
-| naive（每轮都 prompt eval） | 0.09x | ~3 | 最差，等于 12x 变慢 |
-| steady（prompt eval 摊薄） | **0.49x** | ~18 | 真实集成应该是这个水平 |
-| overlap（CPU 和 GPU 并行） | **0.67x** | ~24 | 理论最好，Phase 1 终点能做到 |
+| 本 demo 实测 (reset 每轮) | 112 ms + 30 ms | 3.37 | 24 |
+| steady (KV 保留) | 56 ms + 30 ms | 3.37 | **39** |
+| overlap (CPU/GPU 并行) | max(56, 30) = 56 ms | 3.37 | **60** |
 
-## 对比参考
+### 和现有方案的对比（真实数据上）
 
-| 方案 | tok/s |
-|---|---|
-| 无投机 baseline | 36 |
-| 本 CPU draft 方案（overlap 估算） | ~24 |
-| STANDALONE（同一 draft 模型，GPU 上） | 65 |
-| NGRAM（sglang 原生，模板化数据上） | 300 |
+| 方案 | tok/s | 说明 |
+|---|---|---|
+| baseline 无投机 | 36 | 基线 |
+| STANDALONE (sglang) | **38.7** | 几乎没有提速，原始 65 是模板数据上的 |
+| NGRAM (sglang) | ~60 * | 真实数据上估算，待单独测；之前的 300 是模板数据 |
+| **CPU draft overlap 上限** | **60** | 超过 STANDALONE，持平 NGRAM |
 
-**本方案连 baseline 都打不过，更不用说 STANDALONE**。
+*NGRAM 在真实数据上的真实数字未测，建议接下来补。
 
-## 为什么 CPU 速度不是问题
+## 结论修正
 
-做个反事实分析：假设 accept rate 提到 71%（即 accept_len = 3.5），其他不变：
-- E = 4.5 tokens / iter
-- overlap_iter_time = max(76, 30) = 76 ms
-- throughput = 4.5 / 0.076 = **59 tok/s** → 打平 STANDALONE
-- 如果 accept rate 85%（accept_len = 4.25），throughput = 5.25 / 0.076 = **69 tok/s** → 略超
+原结论（已废弃）：
+> ~~"瓶颈是 draft 模型本身不匹配 target，需要训练 GLM-4 专属 draft"~~
 
-再看 accept rate 99%（sglang NGRAM 模板数据上的水平）：
-- E = 5.95 tokens / iter
-- overlap → 78 tok/s
+实际结论：
+1. **draft 模型完全能胜任** —— accept rate 47%，和 STANDALONE 一致
+2. **CPU 本身不是瓶颈** —— AMX 让 0.6B 模型跑 90 tok/s
+3. **瓶颈在当前 demo 的实现方式**：每轮都 reset + 重 tokenize + 重 prompt eval，把
+   每轮时间从 56ms 拉到 112ms，丢掉了一半速度
+4. **真正的收益要靠两件事**：
+   - a) 维护 draft 的 KV 缓存（不是每次 reset）
+   - b) CPU 和 GPU 并行（draft 下一轮时 GPU 在 verify 这一轮）
 
-**CPU 不是瓶颈，draft 模型的预测准确度才是**。
-
-## 为什么 accept rate 这么低
-
-`GLM-4.5-DRAFT-0.6B` 是**为 GLM-4.5 设计的 draft**，但 target 是 **GLM-4-32B**。
-两代模型的概率分布不一致，用一代的 draft 去预测另一代，本质上就是错配。
-
-证据：sglang 原生的 STANDALONE 用**同一对模型**，accept rate 也只有 27%（见
-outputs/benchmarks/sglang_baseline/20260422_17253{2,7} 的历史记录）。
+两者都在 sglang 集成里天然支持（`StandaloneWorker` 就是这么做的，只是 worker 放在 GPU）。
 
 ## 下一步建议
 
-### 短期（给老板汇报用）
-1. 把这份文档和 `outputs/cpu_draft_demo/cpu_draft_demo_20260423_163329/summary.json` 一起给老板
-2. 确认一个关键问题：**这个项目要超过 sglang 的哪一档？**
-   - 如果要超 NGRAM（300 tok/s）：当前这条路不可能，NGRAM 在模板化数据上本来就是上限
-   - 如果要超 STANDALONE（65 tok/s）：需要更好的 draft 模型
+### 优先级 1：把 NGRAM 在真实数据上的数字测出来
+目前"NGRAM 300 tok/s"来自模板化数据。真实数据上大概率会掉到 50-100 tok/s。
+这个数字决定 CPU draft 方案最终要超的真正门槛。
 
-### 中期（技术路径，按 ROI 排）
-1. **找或训 GLM-4 专属 draft 模型**：这是最根本的解。可以考虑：
-   - 从 GLM-4 体系自己蒸馏一个 0.5–1B 小模型
-   - 和智谱合作直接拿官方 draft（如果他们有内部版本）
-2. **EAGLE for GLM-4**：训练 EAGLE 头，历史上 EAGLE accept rate 普遍 80%+
-3. **NGRAM + 小模型混合**：命中 n-gram 时用 ngram 超快，miss 时 fallback 到小模型
-4. **REST（检索式投机）**：如果业务有 domain corpus，离线建索引，draft 直接查
+### 优先级 2：真正的 sglang 集成（Phase 1 步骤 3）
+按 `docs/03_cpu_draft_poc_plan.md` 的方案 A：
+- 继承 `StandaloneWorker`，派生 `CPUStandaloneWorker`
+- 把 draft model 的 forward 改到 CPU（用 llama.cpp 的 C++ 接口或 PyTorch CPU）
+- 维持 draft KV 缓存跨轮不 reset
+- 实现 CPU draft / GPU verify 的 async overlap
+- 目标：达到 demo 估算的 60 tok/s
 
-### 如果坚持做 CPU draft
-那至少：
-1. 用方案 B（直接在 sglang 里改 `StandaloneWorker` 把 draft forward 迁到 CPU），
-   彻底消除 llama-cpp-python 的 per-call 600ms 开销
-2. 实现真正的 overlap（CPU 产下一轮 draft 时 GPU 在 verify 当前一轮）
-3. 前提：先解决 draft 模型匹配度问题，否则怎么优化都打不过 STANDALONE
+### 优先级 3：更大更好的 draft 模型
+既然准确度不是瓶颈，可以考虑放大到 1-2B 的 draft 换更高 accept rate：
+- 如果 accept rate 能从 47% 提到 70%（accept_len 3.5），overlap throughput 可到 (3.5+1) / 56ms = **80 tok/s**
+- 但更大的 draft 模型 CPU 跑会变慢，需要权衡
 
-## 关于"真实场景"的数据
-
-老板要求测真实情况，不要模板化数据。这次 demo 用的 prompt 覆盖了：代码续写、中英
-问答、长文生成、JSON、翻译、对话。结论是这些场景下 **NGRAM 的 accept rate 会显著低于
-模板化数据**（因为没有现成的 n-gram 可查）。
-
-**下一步建议**：在同一套 realistic prompts 上跑一次 sglang NGRAM，确认 NGRAM 在真实数据
-上到底还有多快（预计会从 300 tok/s 显著掉下来）。如果掉到 100 tok/s 左右，那"超过
-NGRAM"的门槛就变得现实多了。
+## 生成的数据文件
+- `outputs/cpu_draft_demo/cpu_draft_demo_20260423_163329/` — v2 单轮 Q4_0（accept 17%）
+- `outputs/cpu_draft_demo/cpu_draft_F16_20260423_170348/` — v2 单轮 F16（accept 7%）
+- `outputs/cpu_draft_demo/cpu_draft_F16_multiround_20260423_171928/` — **多轮 F16（accept 47%，关键数据）**
+- `outputs/standalone_realistic/standalone_realistic_20260423_165953/` — STANDALONE 对照

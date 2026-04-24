@@ -1,0 +1,143 @@
+{
+  "label": "standalone_realistic",
+  "timestamp": "20260423_165953",
+  "config": {
+    "url": "http://127.0.0.1:6006/v1/completions",
+    "server_log": "/tmp/sglang_runs/standalone_20260423_165909.log",
+    "max_tokens": 64,
+    "runs_per_prompt": 2,
+    "warmup": 3,
+    "num_prompts": 12
+  },
+  "aggregate": {
+    "num_decode_batches_total": 15,
+    "accept_len": {
+      "mean": 2.7693333333333334,
+      "median": 2.4,
+      "min": 1.85,
+      "max": 4.7,
+      "stdev": 0.9403074471884689,
+      "n": 15
+    },
+    "accept_rate": {
+      "mean": 0.46266666666666667,
+      "median": 0.4,
+      "min": 0.31,
+      "max": 0.78,
+      "stdev": 0.1546178083749303,
+      "n": 15
+    },
+    "gen_throughput": {
+      "mean": 41.456,
+      "median": 38.71,
+      "min": 6.02,
+      "max": 72.26,
+      "stdev": 15.60678185917904,
+      "n": 15
+    }
+  },
+  "client_side": {
+    "tok_per_s_per_run": {
+      "mean": 52.61761442572789,
+      "median": 43.044835751706685,
+      "min": 31.40233733288099,
+      "max": 85.3642499361639,
+      "stdev": 20.20098543793816,
+      "n": 24
+    },
+    "latency_ms_per_run": {
+      "mean": 1375.7004752599944,
+      "median": 1492.6503328606486,
+      "min": 749.7283704578876,
+      "max": 2038.0648523569107,
+      "stdev": 446.03140181597496,
+      "n": 24
+    }
+  },
+  "per_prompt": [
+    {
+      "prompt_idx": 0,
+      "prompt_preview": "def binary_search(arr, target):     left, ",
+      "mean_accept_rate": 0.7424999999999999,
+      "mean_accept_len": 4.4750000000000005,
+      "mean_gen_tps": 55.7
+    },
+    {
+      "prompt_idx": 1,
+      "prompt_preview": "写一个 Python 函数，输入一个字符串，返回其中每个单词出现的次数：  def ",
+      "mean_accept_rate": 0.675,
+      "mean_accept_len": 4.065,
+      "mean_gen_tps": 66.08500000000001
+    },
+    {
+      "prompt_idx": 2,
+      "prompt_preview": "Complete the following Rust function that ",
+      "mean_accept_rate": 0.5900000000000001,
+      "mean_accept_len": 3.5475000000000003,
+      "mean_gen_tps": 58.059999999999995
+    },
+    {
+      "prompt_idx": 3,
+      "prompt_preview": "请解释一下什么是 Transformer 架构的注意力机制，以及它为什么在自然语言处",
+      "mean_accept_rate": 0.47,
+      "mean_accept_len": 2.8125,
+      "mean_gen_tps": 48.74249999999999
+    },
+    {
+      "prompt_idx": 4,
+      "prompt_preview": "如果我在训练大语言模型时遇到 loss 突然变成 NaN，通常有哪些可能的原因？应该",
+      "mean_accept_rate": 0.3675,
+      "mean_accept_len": 2.175,
+      "mean_gen_tps": 36.8525
+    },
+    {
+      "prompt_idx": 5,
+      "prompt_preview": "量化感知训练（QAT）和后训练量化（PTQ）的主要区别是什么？实际工程中哪种更常用？",
+      "mean_accept_rate": 0.35250000000000004,
+      "mean_accept_len": 2.1,
+      "mean_gen_tps": 35.287499999999994
+    },
+    {
+      "prompt_idx": 6,
+      "prompt_preview": "The historical impact of the Industrial Re",
+      "mean_accept_rate": 0.41500000000000004,
+      "mean_accept_len": 2.5124999999999997,
+      "mean_gen_tps": 42.545
+    },
+    {
+      "prompt_idx": 7,
+      "prompt_preview": "When designing a distributed database syst",
+      "mean_accept_rate": 0.3625,
+      "mean_accept_len": 2.19,
+      "mean_gen_tps": 37.2725
+    },
+    {
+      "prompt_idx": 8,
+      "prompt_preview": "写一个 200 字左右的短故事，讲一个迷路的机器人在森林里遇到一只会说话的乌龟。",
+      "mean_accept_rate": 0.33,
+      "mean_accept_len": 1.95,
+      "mean_gen_tps": 33.71
+    },
+    {
+      "prompt_idx": 9,
+      "prompt_preview": "Generate a JSON object describing a user p",
+      "mean_accept_rate": 0.48,
+      "mean_accept_len": 2.86,
+      "mean_gen_tps": 46.985
+    },
+    {
+      "prompt_idx": 10,
+      "prompt_preview": "My laptop is overheating whenever I run do",
+      "mean_accept_rate": 0.425,
+      "mean_accept_len": 2.535,
+      "mean_gen_tps": 41.555
+    },
+    {
+      "prompt_idx": 11,
+      "prompt_preview": "请把下面这句话翻译成流畅的英文：“投机采样的核心思想是先用一个便宜的机制猜测未来几个",
+      "mean_accept_rate": 0.45,
+      "mean_accept_len": 2.67,
+      "mean_gen_tps": 44.33
+    }
+  ]
+}

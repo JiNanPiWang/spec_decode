@@ -1,0 +1,1082 @@
+[
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": " \n        mid = (",
+    "target_text": "  # O(log n",
+    "draft_gen_s": 14.694028506055474,
+    "target_latency_s": 0.23774888552725315,
+    "prompt_idx": 0
+  },
+  {
+    "round": 1,
+    "match_len": 5,
+    "draft_text": ")\n        mid = (",
+    "target_text": ")\n        mid = (",
+    "draft_gen_s": 25.107838911935687,
+    "target_latency_s": 0.7949621025472879,
+    "prompt_idx": 0
+  },
+  {
+    "round": 2,
+    "match_len": 5,
+    "draft_text": "left + right) //",
+    "target_text": "left + right) //",
+    "draft_gen_s": 4.589669913053513,
+    "target_latency_s": 0.9887137915939093,
+    "prompt_idx": 0
+  },
+  {
+    "round": 3,
+    "match_len": 5,
+    "draft_text": " 2\n        if",
+    "target_text": " 2\n        if",
+    "draft_gen_s": 16.115296307951212,
+    "target_latency_s": 0.8055515140295029,
+    "prompt_idx": 0
+  },
+  {
+    "round": 4,
+    "match_len": 5,
+    "draft_text": " arr[mid] == target",
+    "target_text": " arr[mid] == target",
+    "draft_gen_s": 39.3825511559844,
+    "target_latency_s": 0.17386937513947487,
+    "prompt_idx": 0
+  },
+  {
+    "round": 5,
+    "match_len": 4,
+    "draft_text": ":\n            return mid ",
+    "target_text": ":\n            return mid\n",
+    "draft_gen_s": 14.98413391597569,
+    "target_latency_s": 0.7044814396649599,
+    "prompt_idx": 0
+  },
+  {
+    "round": 6,
+    "match_len": 5,
+    "draft_text": "        elif arr[mid]",
+    "target_text": "        elif arr[mid]",
+    "draft_gen_s": 20.787759460508823,
+    "target_latency_s": 0.8081338405609131,
+    "prompt_idx": 0
+  },
+  {
+    "round": 7,
+    "match_len": 5,
+    "draft_text": " < target:\n            left",
+    "target_text": " < target:\n            left",
+    "draft_gen_s": 45.964920872822404,
+    "target_latency_s": 0.9917233977466822,
+    "prompt_idx": 0
+  },
+  {
+    "round": 8,
+    "match_len": 5,
+    "draft_text": " = mid + 1",
+    "target_text": " = mid + 1",
+    "draft_gen_s": 14.593192175030708,
+    "target_latency_s": 0.8151338193565607,
+    "prompt_idx": 0
+  },
+  {
+    "round": 9,
+    "match_len": 5,
+    "draft_text": "\n        else:\n           ",
+    "target_text": "\n        else:\n           ",
+    "draft_gen_s": 16.599965434521437,
+    "target_latency_s": 0.9141027834266424,
+    "prompt_idx": 0
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": " \n    # Split the",
+    "target_text": "当然可以！以下是一个",
+    "draft_gen_s": 12.641299409791827,
+    "target_latency_s": 0.8038287926465273,
+    "prompt_idx": 1
+  },
+  {
+    "round": 1,
+    "match_len": 5,
+    "draft_text": " Python 函数，它",
+    "target_text": " Python 函数，它",
+    "draft_gen_s": 15.004384085536003,
+    "target_latency_s": 0.27499228343367577,
+    "prompt_idx": 1
+  },
+  {
+    "round": 2,
+    "match_len": 5,
+    "draft_text": "接受一个字符串作为输入",
+    "target_text": "接受一个字符串作为输入",
+    "draft_gen_s": 26.499205078929663,
+    "target_latency_s": 0.8900198824703693,
+    "prompt_idx": 1
+  },
+  {
+    "round": 3,
+    "match_len": 5,
+    "draft_text": "，并返回其中每个",
+    "target_text": "，并返回其中每个",
+    "draft_gen_s": 32.29657219350338,
+    "target_latency_s": 1.010070089250803,
+    "prompt_idx": 1
+  },
+  {
+    "round": 4,
+    "match_len": 3,
+    "draft_text": "单词出现的次数。\n\n```",
+    "target_text": "单词出现的次数：\n\n```",
+    "draft_gen_s": 0.28051234036684036,
+    "target_latency_s": 0.8098419271409512,
+    "prompt_idx": 1
+  },
+  {
+    "round": 5,
+    "match_len": 5,
+    "draft_text": "python\ndef word_count",
+    "target_text": "python\ndef word_count",
+    "draft_gen_s": 0.13803038187325,
+    "target_latency_s": 0.1488000825047493,
+    "prompt_idx": 1
+  },
+  {
+    "round": 6,
+    "match_len": 4,
+    "draft_text": "(s):\n    # Split",
+    "target_text": "(s):\n    # 将",
+    "draft_gen_s": 0.1454456578940153,
+    "target_latency_s": 0.1623006071895361,
+    "prompt_idx": 1
+  },
+  {
+    "round": 7,
+    "match_len": 2,
+    "draft_text": "字符串转换为列表\n   ",
+    "target_text": "字符串转换为小写，",
+    "draft_gen_s": 0.7797202803194523,
+    "target_latency_s": 0.1572622749954462,
+    "prompt_idx": 1
+  },
+  {
+    "round": 8,
+    "match_len": 1,
+    "draft_text": "以便进行比较\n   ",
+    "target_text": "以便进行不区分大小",
+    "draft_gen_s": 0.17725043185055256,
+    "target_latency_s": 0.16778632439672947,
+    "prompt_idx": 1
+  },
+  {
+    "round": 9,
+    "match_len": 1,
+    "draft_text": "写的比较\n    s",
+    "target_text": "写的计数\n    s",
+    "draft_gen_s": 0.679638871923089,
+    "target_latency_s": 0.16852183640003204,
+    "prompt_idx": 1
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": " \n    if n <=",
+    "target_text": "Certainly! Below is a",
+    "draft_gen_s": 0.140554528683424,
+    "target_latency_s": 0.14755534939467907,
+    "prompt_idx": 2
+  },
+  {
+    "round": 1,
+    "match_len": 5,
+    "draft_text": " Rust function that checks if",
+    "target_text": " Rust function that checks if",
+    "draft_gen_s": 0.14794668182730675,
+    "target_latency_s": 0.15724175237119198,
+    "prompt_idx": 2
+  },
+  {
+    "round": 2,
+    "match_len": 5,
+    "draft_text": " a number is prime:\n\n",
+    "target_text": " a number is prime:\n\n",
+    "draft_gen_s": 0.11499696783721447,
+    "target_latency_s": 0.14108889363706112,
+    "prompt_idx": 2
+  },
+  {
+    "round": 3,
+    "match_len": 5,
+    "draft_text": "```rust\nfn is",
+    "target_text": "```rust\nfn is",
+    "draft_gen_s": 0.09511985257267952,
+    "target_latency_s": 0.15313715301454067,
+    "prompt_idx": 2
+  },
+  {
+    "round": 4,
+    "match_len": 5,
+    "draft_text": "_prime(n: u64",
+    "target_text": "_prime(n: u64",
+    "draft_gen_s": 0.09531461261212826,
+    "target_latency_s": 0.16253973171114922,
+    "prompt_idx": 2
+  },
+  {
+    "round": 5,
+    "match_len": 5,
+    "draft_text": ") -> bool {\n   ",
+    "target_text": ") -> bool {\n   ",
+    "draft_gen_s": 0.16265638917684555,
+    "target_latency_s": 0.1457832921296358,
+    "prompt_idx": 2
+  },
+  {
+    "round": 6,
+    "match_len": 5,
+    "draft_text": " if n <= 1",
+    "target_text": " if n <= 1",
+    "draft_gen_s": 0.0986812561750412,
+    "target_latency_s": 0.15594417043030262,
+    "prompt_idx": 2
+  },
+  {
+    "round": 7,
+    "match_len": 5,
+    "draft_text": " {\n        return false;\n",
+    "target_text": " {\n        return false;\n",
+    "draft_gen_s": 0.09156598336994648,
+    "target_latency_s": 0.1680807936936617,
+    "prompt_idx": 2
+  },
+  {
+    "round": 8,
+    "match_len": 5,
+    "draft_text": "    }\n    if n",
+    "target_text": "    }\n    if n",
+    "draft_gen_s": 0.09831561520695686,
+    "target_latency_s": 0.14527536742389202,
+    "prompt_idx": 2
+  },
+  {
+    "round": 9,
+    "match_len": 0,
+    "draft_text": " == 2 {\n       ",
+    "target_text": " <= 3 {\n       ",
+    "draft_gen_s": 0.13741996511816978,
+    "target_latency_s": 0.15001720935106277,
+    "prompt_idx": 2
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": "此外，请提供一个",
+    "target_text": "Transformer 架构的",
+    "draft_gen_s": 0.11680825613439083,
+    "target_latency_s": 0.14562973752617836,
+    "prompt_idx": 3
+  },
+  {
+    "round": 1,
+    "match_len": 4,
+    "draft_text": "注意力机制是一种用于自然",
+    "target_text": "注意力机制是一种用于处理",
+    "draft_gen_s": 0.08633482456207275,
+    "target_latency_s": 0.14271683059632778,
+    "prompt_idx": 3
+  },
+  {
+    "round": 2,
+    "match_len": 0,
+    "draft_text": "大规模文本数据的方法，",
+    "target_text": "序列数据的神经网络架构，",
+    "draft_gen_s": 0.09323159977793694,
+    "target_latency_s": 0.14647731184959412,
+    "prompt_idx": 3
+  },
+  {
+    "round": 3,
+    "match_len": 3,
+    "draft_text": "它通过计算每个输入",
+    "target_text": "它通过计算输入序列",
+    "draft_gen_s": 2.3931842520833015,
+    "target_latency_s": 0.14499132707715034,
+    "prompt_idx": 3
+  },
+  {
+    "round": 4,
+    "match_len": 1,
+    "draft_text": "中每个元素的重要性来",
+    "target_text": "中各个元素之间的相关性",
+    "draft_gen_s": 0.10362799651920795,
+    "target_latency_s": 0.16228095069527626,
+    "prompt_idx": 3
+  },
+  {
+    "round": 5,
+    "match_len": 1,
+    "draft_text": "来预测下一个元素。",
+    "target_text": "来捕捉序列中的长",
+    "draft_gen_s": 0.12178463116288185,
+    "target_latency_s": 0.14947625249624252,
+    "prompt_idx": 3
+  },
+  {
+    "round": 6,
+    "match_len": 4,
+    "draft_text": "距离依赖关系。它",
+    "target_text": "距离依赖关系。与",
+    "draft_gen_s": 0.09303368255496025,
+    "target_latency_s": 0.1448402088135481,
+    "prompt_idx": 3
+  },
+  {
+    "round": 7,
+    "match_len": 0,
+    "draft_text": " RNN 类似，",
+    "target_text": "传统的循环神经网络（R",
+    "draft_gen_s": 0.08581570535898209,
+    "target_latency_s": 0.14978005923330784,
+    "prompt_idx": 3
+  },
+  {
+    "round": 8,
+    "match_len": 2,
+    "draft_text": "NN）不同，Transformer",
+    "target_text": "NN）相比，Transformer",
+    "draft_gen_s": 0.11466752737760544,
+    "target_latency_s": 0.14320877939462662,
+    "prompt_idx": 3
+  },
+  {
+    "round": 9,
+    "match_len": 5,
+    "draft_text": " 架构的注意力",
+    "target_text": " 架构的注意力",
+    "draft_gen_s": 0.1190047338604927,
+    "target_latency_s": 0.14683062955737114,
+    "prompt_idx": 3
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": " 在训练大语言模型",
+    "target_text": "在训练大语言模型",
+    "draft_gen_s": 0.18444580771028996,
+    "target_latency_s": 0.14557714201509953,
+    "prompt_idx": 4
+  },
+  {
+    "round": 1,
+    "match_len": 5,
+    "draft_text": "时，如果遇到 loss",
+    "target_text": "时，如果遇到 loss",
+    "draft_gen_s": 0.08929379098117352,
+    "target_latency_s": 0.14256856963038445,
+    "prompt_idx": 4
+  },
+  {
+    "round": 2,
+    "match_len": 5,
+    "draft_text": " 突然变成",
+    "target_text": " 突然变成",
+    "draft_gen_s": 0.1857154481112957,
+    "target_latency_s": 0.14214887656271458,
+    "prompt_idx": 4
+  },
+  {
+    "round": 3,
+    "match_len": 1,
+    "draft_text": " NaN，通常有以下",
+    "target_text": " NaN（Not a Number",
+    "draft_gen_s": 0.09875545650720596,
+    "target_latency_s": 0.14310525730252266,
+    "prompt_idx": 4
+  },
+  {
+    "round": 4,
+    "match_len": 0,
+    "draft_text": "）的情况，可能的原因",
+    "target_text": "），通常可能由以下几个",
+    "draft_gen_s": 0.11184303648769855,
+    "target_latency_s": 0.1503817643970251,
+    "prompt_idx": 4
+  },
+  {
+    "round": 5,
+    "match_len": 5,
+    "draft_text": "原因引起：\n\n1.",
+    "target_text": "原因引起：\n\n1.",
+    "draft_gen_s": 0.08176552876830101,
+    "target_latency_s": 0.14586522430181503,
+    "prompt_idx": 4
+  },
+  {
+    "round": 6,
+    "match_len": 1,
+    "draft_text": " **数据问题**：",
+    "target_text": " **数值溢出**",
+    "draft_gen_s": 0.09975786693394184,
+    "target_latency_s": 0.14542060531675816,
+    "prompt_idx": 4
+  },
+  {
+    "round": 7,
+    "match_len": 2,
+    "draft_text": "：在训练过程中，",
+    "target_text": "：在计算过程中，",
+    "draft_gen_s": 0.3821769617497921,
+    "target_latency_s": 0.1491557378321886,
+    "prompt_idx": 4
+  },
+  {
+    "round": 8,
+    "match_len": 0,
+    "draft_text": "如果某个操作导致数值",
+    "target_text": "数值可能变得过大或",
+    "draft_gen_s": 0.11233778484165668,
+    "target_latency_s": 0.14629924669861794,
+    "prompt_idx": 4
+  },
+  {
+    "round": 9,
+    "match_len": 3,
+    "draft_text": "过小，导致 NaN",
+    "target_text": "过小，超出了",
+    "draft_gen_s": 0.09418659098446369,
+    "target_latency_s": 0.14442916586995125,
+    "prompt_idx": 4
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": "量化感知训练（Q",
+    "target_text": "为什么？\n量化感知训练",
+    "draft_gen_s": 0.1385396346449852,
+    "target_latency_s": 0.15961592830717564,
+    "prompt_idx": 5
+  },
+  {
+    "round": 1,
+    "match_len": 5,
+    "draft_text": "（QAT）和",
+    "target_text": "（QAT）和",
+    "draft_gen_s": 0.09507189691066742,
+    "target_latency_s": 0.1443464681506157,
+    "prompt_idx": 5
+  },
+  {
+    "round": 2,
+    "match_len": 5,
+    "draft_text": "后训练量化（PT",
+    "target_text": "后训练量化（PT",
+    "draft_gen_s": 0.08354920335114002,
+    "target_latency_s": 0.145649628713727,
+    "prompt_idx": 5
+  },
+  {
+    "round": 3,
+    "match_len": 5,
+    "draft_text": "Q）是两种不同的",
+    "target_text": "Q）是两种不同的",
+    "draft_gen_s": 0.11896083876490593,
+    "target_latency_s": 0.13918673060834408,
+    "prompt_idx": 5
+  },
+  {
+    "round": 4,
+    "match_len": 0,
+    "draft_text": "训练方法，它们在",
+    "target_text": "模型量化方法，它们",
+    "draft_gen_s": 0.10786433331668377,
+    "target_latency_s": 0.14480908773839474,
+    "prompt_idx": 5
+  },
+  {
+    "round": 5,
+    "match_len": 0,
+    "draft_text": "在实际工程中的应用中",
+    "target_text": "的主要区别在于量化是在",
+    "draft_gen_s": 0.10942701809108257,
+    "target_latency_s": 0.14944449625909328,
+    "prompt_idx": 5
+  },
+  {
+    "round": 6,
+    "match_len": 1,
+    "draft_text": "训练阶段还是在测试",
+    "target_text": "训练过程中还是训练之后",
+    "draft_gen_s": 0.1007452979683876,
+    "target_latency_s": 0.1472942717373371,
+    "prompt_idx": 5
+  },
+  {
+    "round": 7,
+    "match_len": 1,
+    "draft_text": "进行的。QAT",
+    "target_text": "进行的。\n\n1. ",
+    "draft_gen_s": 0.0982364360243082,
+    "target_latency_s": 0.1429444309324026,
+    "prompt_idx": 5
+  },
+  {
+    "round": 8,
+    "match_len": 5,
+    "draft_text": "量化感知训练（Q",
+    "target_text": "量化感知训练（Q",
+    "draft_gen_s": 0.10694165900349617,
+    "target_latency_s": 0.1476480606943369,
+    "prompt_idx": 5
+  },
+  {
+    "round": 9,
+    "match_len": 1,
+    "draft_text": "AT）：QAT",
+    "target_text": "AT）：\n   -",
+    "draft_gen_s": 0.15657413005828857,
+    "target_latency_s": 0.1934298351407051,
+    "prompt_idx": 5
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": " this revolution shape the world",
+    "target_text": " the Industrial Revolution shape the",
+    "draft_gen_s": 0.07425798662006855,
+    "target_latency_s": 0.18629399873316288,
+    "prompt_idx": 6
+  },
+  {
+    "round": 1,
+    "match_len": 0,
+    "draft_text": " world in which we live",
+    "target_text": " modern world, and what",
+    "draft_gen_s": 0.08003039844334126,
+    "target_latency_s": 0.1595433484762907,
+    "prompt_idx": 6
+  },
+  {
+    "round": 2,
+    "match_len": 0,
+    "draft_text": " were the consequences of its",
+    "target_text": " are some of the most",
+    "draft_gen_s": 0.08020201697945595,
+    "target_latency_s": 0.1460506785660982,
+    "prompt_idx": 6
+  },
+  {
+    "round": 3,
+    "match_len": 1,
+    "draft_text": " significant consequences of this transformation",
+    "target_text": " significant long-term consequences of",
+    "draft_gen_s": 0.09947873838245869,
+    "target_latency_s": 0.15002810396254063,
+    "prompt_idx": 6
+  },
+  {
+    "round": 4,
+    "match_len": 1,
+    "draft_text": " this transformation? How did",
+    "target_text": " this period of rapid industrial",
+    "draft_gen_s": 0.08563217520713806,
+    "target_latency_s": 0.14333898946642876,
+    "prompt_idx": 6
+  },
+  {
+    "round": 5,
+    "match_len": 1,
+    "draft_text": "ization? How did the",
+    "target_text": "ization?\nThe Industrial Revolution",
+    "draft_gen_s": 0.0820606779307127,
+    "target_latency_s": 0.14169158414006233,
+    "prompt_idx": 6
+  },
+  {
+    "round": 6,
+    "match_len": 0,
+    "draft_text": " was a period of rapid",
+    "target_text": ", which began in the",
+    "draft_gen_s": 0.09562969952821732,
+    "target_latency_s": 0.1455207895487547,
+    "prompt_idx": 6
+  },
+  {
+    "round": 7,
+    "match_len": 0,
+    "draft_text": " 18th century,",
+    "target_text": " late 18th century",
+    "draft_gen_s": 0.06443773582577705,
+    "target_latency_s": 0.14018514752388,
+    "prompt_idx": 6
+  },
+  {
+    "round": 8,
+    "match_len": 0,
+    "draft_text": " and lasted until the early",
+    "target_text": " in Britain and spread to",
+    "draft_gen_s": 0.083202650770545,
+    "target_latency_s": 0.14888878539204597,
+    "prompt_idx": 6
+  },
+  {
+    "round": 9,
+    "match_len": 3,
+    "draft_text": " other parts of Europe and",
+    "target_text": " other parts of the world",
+    "draft_gen_s": 0.0921616330742836,
+    "target_latency_s": 0.1486405711621046,
+    "prompt_idx": 6
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": " the following:\n\n1.",
+    "target_text": " balancing performance, consistency,",
+    "draft_gen_s": 0.082151610404253,
+    "target_latency_s": 0.14962899312376976,
+    "prompt_idx": 7
+  },
+  {
+    "round": 1,
+    "match_len": 1,
+    "draft_text": " and scalability. Here are",
+    "target_text": " and system complexity. Here",
+    "draft_gen_s": 0.08391332067549229,
+    "target_latency_s": 0.13834984973073006,
+    "prompt_idx": 7
+  },
+  {
+    "round": 2,
+    "match_len": 1,
+    "draft_text": " are some key factors to",
+    "target_text": " are the key tradeoffs",
+    "draft_gen_s": 0.08953401073813438,
+    "target_latency_s": 0.13842955604195595,
+    "prompt_idx": 7
+  },
+  {
+    "round": 3,
+    "match_len": 1,
+    "draft_text": " and their implications:\n\n1",
+    "target_text": " and considerations:\n\n### ",
+    "draft_gen_s": 0.1607234962284565,
+    "target_latency_s": 0.15924246795475483,
+    "prompt_idx": 7
+  },
+  {
+    "round": 4,
+    "match_len": 3,
+    "draft_text": "1. **Performance**\n",
+    "target_text": "1. **Consistency",
+    "draft_gen_s": 0.1262600515037775,
+    "target_latency_s": 0.14117158018052578,
+    "prompt_idx": 7
+  },
+  {
+    "round": 5,
+    "match_len": 0,
+    "draft_text": "**: The primary goal is",
+    "target_text": " Models**\n   - **",
+    "draft_gen_s": 0.0822500791400671,
+    "target_latency_s": 0.14174444414675236,
+    "prompt_idx": 7
+  },
+  {
+    "round": 6,
+    "match_len": 3,
+    "draft_text": "Strong Consistency**: This",
+    "target_text": "Strong Consistency (e",
+    "draft_gen_s": 0.0859040692448616,
+    "target_latency_s": 0.14395619556307793,
+    "prompt_idx": 7
+  },
+  {
+    "round": 7,
+    "match_len": 2,
+    "draft_text": ".g., MVCC,",
+    "target_text": ".g., Linearizability",
+    "draft_gen_s": 0.07817777618765831,
+    "target_latency_s": 0.14083505980670452,
+    "prompt_idx": 7
+  },
+  {
+    "round": 8,
+    "match_len": 2,
+    "draft_text": "):** This model ensures",
+    "target_text": "):** Ensures that",
+    "draft_gen_s": 0.15981805883347988,
+    "target_latency_s": 0.14249601028859615,
+    "prompt_idx": 7
+  },
+  {
+    "round": 9,
+    "match_len": 1,
+    "draft_text": " all transactions are committed in",
+    "target_text": " all operations appear to execute",
+    "draft_gen_s": 0.10508321225643158,
+    "target_latency_s": 0.14483295194804668,
+    "prompt_idx": 7
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": "故事中，机器人在",
+    "target_text": "在一个阳光明媚的早晨",
+    "draft_gen_s": 0.14638995751738548,
+    "target_latency_s": 0.15368843264877796,
+    "prompt_idx": 8
+  },
+  {
+    "round": 1,
+    "match_len": 1,
+    "draft_text": "，一只迷路的小",
+    "target_text": "，一个名叫“小",
+    "draft_gen_s": 0.11455455981194973,
+    "target_latency_s": 0.13949024304747581,
+    "prompt_idx": 8
+  },
+  {
+    "round": 2,
+    "match_len": 0,
+    "draft_text": "兔子”的可爱小",
+    "target_text": "智”的机器人在",
+    "draft_gen_s": 0.08715607970952988,
+    "target_latency_s": 0.1427983772009611,
+    "prompt_idx": 8
+  },
+  {
+    "round": 3,
+    "match_len": 2,
+    "draft_text": "森林里遇到了一只会",
+    "target_text": "森林里迷了路",
+    "draft_gen_s": 0.09456364437937737,
+    "target_latency_s": 0.14164170250296593,
+    "prompt_idx": 8
+  },
+  {
+    "round": 4,
+    "match_len": 1,
+    "draft_text": "。它不知道自己在哪里",
+    "target_text": "。它的导航系统突然",
+    "draft_gen_s": 0.15575973689556122,
+    "target_latency_s": 0.14855985715985298,
+    "prompt_idx": 8
+  },
+  {
+    "round": 5,
+    "match_len": 0,
+    "draft_text": "失效，它不知道该",
+    "target_text": "失灵，周围的一切",
+    "draft_gen_s": 0.07832320220768452,
+    "target_latency_s": 0.1483091153204441,
+    "prompt_idx": 8
+  },
+  {
+    "round": 6,
+    "match_len": 2,
+    "draft_text": "都变得模糊不清。",
+    "target_text": "都变得陌生而陌生",
+    "draft_gen_s": 0.11757277324795723,
+    "target_latency_s": 0.14662001840770245,
+    "prompt_idx": 8
+  },
+  {
+    "round": 7,
+    "match_len": 3,
+    "draft_text": "。小智开始四处",
+    "target_text": "。小智感到无助",
+    "draft_gen_s": 0.1626389753073454,
+    "target_latency_s": 0.14407934248447418,
+    "prompt_idx": 8
+  },
+  {
+    "round": 8,
+    "match_len": 0,
+    "draft_text": "，但它并没有放弃。",
+    "target_text": "和害怕，它不知道",
+    "draft_gen_s": 0.08843792974948883,
+    "target_latency_s": 0.1406761221587658,
+    "prompt_idx": 8
+  },
+  {
+    "round": 9,
+    "match_len": 1,
+    "draft_text": "该怎么办，它不知道它",
+    "target_text": "该怎么办。\n\n就在这时，",
+    "draft_gen_s": 0.10417680814862251,
+    "target_latency_s": 0.13948575221002102,
+    "prompt_idx": 8
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": "{\n  \"name\":",
+    "target_text": "```json\n{\n ",
+    "draft_gen_s": 0.15930459648370743,
+    "target_latency_s": 0.14433426968753338,
+    "prompt_idx": 9
+  },
+  {
+    "round": 1,
+    "match_len": 5,
+    "draft_text": " \"name\": \"John",
+    "target_text": " \"name\": \"John",
+    "draft_gen_s": 0.10459375008940697,
+    "target_latency_s": 0.14538714662194252,
+    "prompt_idx": 9
+  },
+  {
+    "round": 2,
+    "match_len": 5,
+    "draft_text": " Doe\",\n  \"email",
+    "target_text": " Doe\",\n  \"email",
+    "draft_gen_s": 8.147197073325515,
+    "target_latency_s": 0.14756897278130054,
+    "prompt_idx": 9
+  },
+  {
+    "round": 3,
+    "match_len": 2,
+    "draft_text": "\": \"john.doe",
+    "target_text": "\": \"johnd",
+    "draft_gen_s": 0.09465072117745876,
+    "target_latency_s": 0.15042957104742527,
+    "prompt_idx": 9
+  },
+  {
+    "round": 4,
+    "match_len": 5,
+    "draft_text": "oe@example.com\",\n ",
+    "target_text": "oe@example.com\",\n ",
+    "draft_gen_s": 0.07934889756143093,
+    "target_latency_s": 0.1405542977154255,
+    "prompt_idx": 9
+  },
+  {
+    "round": 5,
+    "match_len": 5,
+    "draft_text": " \"age\": 30",
+    "target_text": " \"age\": 30",
+    "draft_gen_s": 0.12204769998788834,
+    "target_latency_s": 0.1427223365753889,
+    "prompt_idx": 9
+  },
+  {
+    "round": 6,
+    "match_len": 5,
+    "draft_text": ",\n  \"preferences\":",
+    "target_text": ",\n  \"preferences\":",
+    "draft_gen_s": 0.11174358800053596,
+    "target_latency_s": 0.14170325733721256,
+    "prompt_idx": 9
+  },
+  {
+    "round": 7,
+    "match_len": 5,
+    "draft_text": " {\n    \"theme\":",
+    "target_text": " {\n    \"theme\":",
+    "draft_gen_s": 0.11551117710769176,
+    "target_latency_s": 0.14699784852564335,
+    "prompt_idx": 9
+  },
+  {
+    "round": 8,
+    "match_len": 5,
+    "draft_text": " \"dark\",\n    \"",
+    "target_text": " \"dark\",\n    \"",
+    "draft_gen_s": 0.08167195320129395,
+    "target_latency_s": 0.14551570639014244,
+    "prompt_idx": 9
+  },
+  {
+    "round": 9,
+    "match_len": 5,
+    "draft_text": "language\": \"en\"\n",
+    "target_text": "language\": \"en\"\n",
+    "draft_gen_s": 0.1059434562921524,
+    "target_latency_s": 0.1409801710397005,
+    "prompt_idx": 9
+  },
+  {
+    "round": 0,
+    "match_len": 4,
+    "draft_text": " I have a 2",
+    "target_text": " I have a 201",
+    "draft_gen_s": 1.5037799905985594,
+    "target_latency_s": 0.1412623394280672,
+    "prompt_idx": 10
+  },
+  {
+    "round": 1,
+    "match_len": 0,
+    "draft_text": "5 MacBook Pro. I",
+    "target_text": "9 MacBook Pro 16",
+    "draft_gen_s": 1.2626751251518726,
+    "target_latency_s": 0.14292440190911293,
+    "prompt_idx": 10
+  },
+  {
+    "round": 2,
+    "match_len": 0,
+    "draft_text": " inch. I have a",
+    "target_text": "-inch with 32GB",
+    "draft_gen_s": 0.15577616915106773,
+    "target_latency_s": 0.14311369694769382,
+    "prompt_idx": 10
+  },
+  {
+    "round": 3,
+    "match_len": 2,
+    "draft_text": " of RAM. I have",
+    "target_text": " of RAM and an SSD",
+    "draft_gen_s": 3.6653120070695877,
+    "target_latency_s": 0.143049955368042,
+    "prompt_idx": 10
+  },
+  {
+    "round": 4,
+    "match_len": 2,
+    "draft_text": ". I have a ",
+    "target_text": ". I'm running macOS",
+    "draft_gen_s": 0.10255557857453823,
+    "target_latency_s": 0.14832432940602303,
+    "prompt_idx": 10
+  },
+  {
+    "round": 5,
+    "match_len": 0,
+    "draft_text": " Sierra 13.4",
+    "target_text": " Monterey 12.6",
+    "draft_gen_s": 0.15369633957743645,
+    "target_latency_s": 0.14425013214349747,
+    "prompt_idx": 10
+  },
+  {
+    "round": 6,
+    "match_len": 5,
+    "draft_text": ".1. I have",
+    "target_text": ".1. I have",
+    "draft_gen_s": 0.16349810175597668,
+    "target_latency_s": 0.14298477582633495,
+    "prompt_idx": 10
+  },
+  {
+    "round": 7,
+    "match_len": 0,
+    "draft_text": " tried the following steps:\n\n",
+    "target_text": " Docker Desktop 4.",
+    "draft_gen_s": 0.10665407590568066,
+    "target_latency_s": 0.14732305146753788,
+    "prompt_idx": 10
+  },
+  {
+    "round": 8,
+    "match_len": 0,
+    "draft_text": "0.1 installed.",
+    "target_text": "10.0 installed.",
+    "draft_gen_s": 0.1052093580365181,
+    "target_latency_s": 0.16175360046327114,
+    "prompt_idx": 10
+  },
+  {
+    "round": 9,
+    "match_len": 1,
+    "draft_text": " I have tried the following",
+    "target_text": " I'm running a container",
+    "draft_gen_s": 0.07925992831587791,
+    "target_latency_s": 0.1384677141904831,
+    "prompt_idx": 10
+  },
+  {
+    "round": 0,
+    "match_len": 0,
+    "draft_text": "\n\nStep 1:",
+    "target_text": "The core idea of speculative",
+    "draft_gen_s": 0.07811019010841846,
+    "target_latency_s": 0.14270532689988613,
+    "prompt_idx": 11
+  },
+  {
+    "round": 1,
+    "match_len": 3,
+    "draft_text": " sampling is to use a",
+    "target_text": " sampling is to first use",
+    "draft_gen_s": 0.2687316816300154,
+    "target_latency_s": 0.14296154864132404,
+    "prompt_idx": 11
+  },
+  {
+    "round": 2,
+    "match_len": 1,
+    "draft_text": " a mechanism to guess the",
+    "target_text": " a cheap mechanism to guess",
+    "draft_gen_s": 0.08943158946931362,
+    "target_latency_s": 0.1575281359255314,
+    "prompt_idx": 11
+  },
+  {
+    "round": 3,
+    "match_len": 5,
+    "draft_text": " the next few tokens,",
+    "target_text": " the next few tokens,",
+    "draft_gen_s": 0.2497390490025282,
+    "target_latency_s": 0.14361089654266834,
+    "prompt_idx": 11
+  },
+  {
+    "round": 4,
+    "match_len": 0,
+    "draft_text": " then let a large model",
+    "target_text": " and then let the large",
+    "draft_gen_s": 0.09559809789061546,
+    "target_latency_s": 0.14687038399279118,
+    "prompt_idx": 11
+  },
+  {
+    "round": 5,
+    "match_len": 1,
+    "draft_text": " model validate them all at",
+    "target_text": " model verify them all at",
+    "draft_gen_s": 9.632666764780879,
+    "target_latency_s": 0.1498340629041195,
+    "prompt_idx": 11
+  },
+  {
+    "round": 6,
+    "match_len": 3,
+    "draft_text": " once.  This is",
+    "target_text": " once.  (The",
+    "draft_gen_s": 0.10683386400341988,
+    "target_latency_s": 0.14256407879292965,
+    "prompt_idx": 11
+  },
+  {
+    "round": 7,
+    "match_len": 0,
+    "draft_text": " term “speculative sampling",
+    "target_text": " original sentence is \"投机",
+    "draft_gen_s": 0.13527405261993408,
+    "target_latency_s": 0.14352139085531235,
+    "prompt_idx": 11
+  },
+  {
+    "round": 8,
+    "match_len": 5,
+    "draft_text": "采样的核心思想是",
+    "target_text": "采样的核心思想是",
+    "draft_gen_s": 0.0882509034126997,
+    "target_latency_s": 0.14017030224204063,
+    "prompt_idx": 11
+  },
+  {
+    "round": 9,
+    "match_len": 0,
+    "draft_text": "用一个廉价的机制",
+    "target_text": "先用一个便宜的机制猜测",
+    "draft_gen_s": 0.16200556978583336,
+    "target_latency_s": 0.14482278935611248,
+    "prompt_idx": 11
+  }
+]
