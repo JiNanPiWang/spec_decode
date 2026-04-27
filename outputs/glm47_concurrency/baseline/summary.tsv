@@ -1,0 +1,5 @@
+concurrency	num_prompts	completed	ttft_p50_ms	tpot_p50_ms	itl_p50_ms	output_throughput_tok_s	request_throughput_req_s	duration_s
+1	64	64	44.5	8.97	8.97	109.39	0.427	149.8
+8	64	64	44.1	20.43	20.68	385.16	1.505	42.5
+32	256	256	186.5	33.62	34.36	937.72	3.663	69.9
+64	512	512	145.5	39.35	40.49	1598.78	6.245	82.0

@@ -1,0 +1,660 @@
+{"conversations": [{"content": "[请求编号 0000] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0001] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0002] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0003] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0004] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0005] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0006] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0007] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0008] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0009] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0010] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0011] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0012] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0013] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0014] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0015] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0016] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0017] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0018] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0019] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0020] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0021] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0022] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0023] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0024] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0025] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0026] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0027] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0028] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0029] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0030] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0031] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0032] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0033] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0034] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0035] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0036] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0037] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0038] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0039] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0040] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0041] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0042] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0043] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0044] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0045] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0046] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0047] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0048] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0049] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0050] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0051] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0052] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0053] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0054] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0055] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0056] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0057] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0058] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0059] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0060] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0061] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0062] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0063] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0064] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0065] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0066] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0067] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0068] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0069] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0070] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0071] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0072] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0073] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0074] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0075] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0076] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0077] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0078] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0079] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0080] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0081] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0082] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0083] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0084] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0085] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0086] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0087] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0088] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0089] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0090] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0091] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0092] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0093] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0094] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0095] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0096] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0097] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0098] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0099] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0100] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0101] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0102] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0103] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0104] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0105] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0106] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0107] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0108] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0109] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0110] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0111] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0112] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0113] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0114] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0115] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0116] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0117] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0118] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0119] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0120] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0121] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0122] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0123] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0124] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0125] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0126] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0127] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0128] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0129] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0130] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0131] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0132] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0133] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0134] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0135] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0136] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0137] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0138] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0139] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0140] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0141] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0142] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0143] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0144] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0145] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0146] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0147] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0148] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0149] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0150] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0151] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0152] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0153] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0154] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0155] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0156] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0157] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0158] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0159] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0160] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0161] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0162] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0163] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0164] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0165] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0166] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0167] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0168] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0169] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0170] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0171] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0172] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0173] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0174] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0175] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0176] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0177] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0178] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0179] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0180] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0181] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0182] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0183] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0184] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0185] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0186] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0187] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0188] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0189] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0190] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0191] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0192] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0193] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0194] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0195] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0196] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0197] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0198] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0199] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0200] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0201] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0202] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0203] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0204] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0205] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0206] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0207] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0208] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0209] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0210] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0211] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0212] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0213] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0214] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0215] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0216] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0217] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0218] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0219] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0220] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0221] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0222] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0223] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0224] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0225] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0226] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0227] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0228] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0229] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0230] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0231] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0232] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0233] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0234] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0235] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0236] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0237] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0238] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0239] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0240] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0241] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0242] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0243] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0244] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0245] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0246] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0247] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0248] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0249] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0250] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0251] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0252] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0253] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0254] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0255] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0256] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0257] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0258] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0259] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0260] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0261] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0262] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0263] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0264] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0265] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0266] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0267] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0268] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0269] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0270] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0271] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0272] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0273] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0274] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0275] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0276] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0277] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0278] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0279] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0280] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0281] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0282] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0283] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0284] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0285] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0286] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0287] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0288] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0289] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0290] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0291] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0292] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0293] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0294] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0295] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0296] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0297] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0298] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0299] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0300] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0301] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0302] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0303] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0304] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0305] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0306] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0307] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0308] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0309] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0310] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0311] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0312] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0313] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0314] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0315] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0316] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0317] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0318] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0319] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0320] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0321] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0322] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0323] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0324] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0325] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0326] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0327] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0328] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0329] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0330] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0331] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0332] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0333] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0334] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0335] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0336] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0337] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0338] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0339] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0340] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0341] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0342] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0343] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0344] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0345] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0346] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0347] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0348] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0349] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0350] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0351] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0352] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0353] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0354] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0355] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0356] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0357] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0358] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0359] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0360] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0361] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0362] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0363] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0364] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0365] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0366] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0367] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0368] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0369] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0370] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0371] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0372] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0373] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0374] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0375] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0376] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0377] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0378] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0379] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0380] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0381] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0382] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0383] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0384] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0385] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0386] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0387] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0388] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0389] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0390] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0391] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0392] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0393] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0394] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0395] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0396] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0397] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0398] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0399] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0400] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0401] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0402] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0403] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0404] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0405] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0406] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0407] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0408] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0409] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0410] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0411] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0412] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0413] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0414] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0415] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0416] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0417] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0418] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0419] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0420] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0421] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0422] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0423] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0424] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0425] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0426] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0427] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0428] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0429] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0430] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0431] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0432] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0433] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0434] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0435] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0436] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0437] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0438] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0439] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0440] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0441] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0442] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0443] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0444] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0445] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0446] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0447] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0448] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0449] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0450] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0451] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0452] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0453] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0454] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0455] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0456] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0457] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0458] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0459] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0460] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0461] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0462] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0463] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0464] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0465] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0466] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0467] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0468] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0469] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0470] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0471] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0472] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0473] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0474] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0475] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0476] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0477] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0478] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0479] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0480] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0481] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0482] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0483] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0484] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0485] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0486] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0487] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0488] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0489] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0490] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0491] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0492] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0493] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0494] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0495] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0496] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0497] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0498] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0499] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0500] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0501] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0502] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0503] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0504] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0505] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0506] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0507] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0508] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0509] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0510] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0511] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0512] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0513] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0514] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0515] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0516] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0517] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0518] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0519] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0520] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0521] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0522] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0523] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0524] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0525] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0526] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0527] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0528] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0529] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0530] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0531] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0532] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0533] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0534] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0535] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0536] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0537] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0538] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0539] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0540] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0541] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0542] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0543] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0544] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0545] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0546] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0547] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0548] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0549] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0550] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0551] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0552] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0553] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0554] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0555] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0556] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0557] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0558] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0559] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0560] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0561] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0562] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0563] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0564] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0565] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0566] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0567] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0568] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0569] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0570] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0571] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0572] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0573] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0574] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0575] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0576] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0577] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0578] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0579] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0580] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0581] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0582] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0583] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0584] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0585] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0586] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0587] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0588] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0589] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0590] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0591] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0592] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0593] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0594] 用 Python 实现一个 LRU 缓存类，支持 O(1) get 和 put 操作。请给出完整代码并解释关键设计。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0595] Complete the following Rust function that checks if a number is prime, and explain your approach:\n\nfn is_prime(n: u64) -> bool {"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0596] 下面是一段 Go 代码，请指出其中的并发安全问题并给出修复方案：\n\nvar counter int\nfunc add() { counter++ }\nfor i := 0; i < 1000; i++ { go add() }"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0597] 用 TypeScript 写一个深拷贝函数，要支持嵌套对象、数组、Date、RegExp、Map、Set，并避免循环引用导致的栈溢出。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0598] 给我一个 C++ 模板元编程的例子，演示编译期计算 N 的阶乘，并解释 SFINAE 在其中的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0599] 解释 React hooks 中 useEffect 的依赖数组工作原理，给出三个常见误用的例子和修正方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0600] 用 SQL 写一个查询：从 orders 表按月份汇总销售额，并显示同比增长率。orders 表有 order_date, amount 两个字段。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0601] Write a Python decorator that retries a function up to N times with exponential backoff on failure, and supports both sync and async functions."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0602] 用 PyTorch 写一个简单的 Transformer encoder 层，包含 multi-head self-attention 和 feed-forward，并解释 residual connection 的作用。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0603] 解释一下 CUDA 的 warp divergence 是什么，以及在 kernel 设计时如何尽量避免？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0604] 请详细解释一下什么是 Transformer 架构里的注意力机制，以及为什么它在自然语言处理上比 RNN 更有效。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0605] 给我讲一下 KV cache 在大语言模型推理中的作用，以及为什么 prefill 和 decode 两个阶段的计算特性不一样。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0606] 投机采样（speculative decoding）的核心思想是什么？draft model 和 target model 各自做什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0607] 解释一下 LoRA 这种参数高效微调方法的数学原理，以及它相比全参微调的主要优劣。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0608] MoE（Mixture of Experts）架构里，为什么在推理时 KV cache 占用反而比 dense 模型大？请详细说明。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0609] 什么是量化感知训练（QAT）和后训练量化（PTQ），它们的主要区别是什么？实际工程里怎么选择？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0610] Explain the CAP theorem in distributed systems and give a concrete example for each of the three trade-off categories."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0611] Compare and contrast TCP and QUIC. Why is QUIC sometimes preferred for HTTP/3? What are the tradeoffs in latency, security, and middlebox compatibility?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0612] 请详细解释一下 GPU 上 tensor core 和 cuda core 的区别，以及它们分别擅长什么类型的运算。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0613] 讲讲 RDMA 是什么，它相比传统 TCP/IP 网络在 AI 训练集群中能带来哪些优势？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0614] 我们在训练一个大模型时，发现 loss 突然变成 NaN，通常有哪些可能的原因？应该怎么排查？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0615] 我的服务在高并发下偶尔出现 502 错误，怀疑是上游 nginx 配置问题，给我一个系统化的排查思路。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0616] Python 程序的内存占用持续增长但没有明显泄漏，请列出可能的原因，并说明用什么工具去定位。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0617] 我用 docker 跑容器时，每隔几小时就会出现 OOM 被 kill 的情况，但容器内进程看起来内存没涨。可能问题在哪？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0618] Postgres 一个查询走了 seq scan 而不是预期中的 index scan，请列出几个常见原因和检查方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0619] Kubernetes pod 一直处于 CrashLoopBackOff 状态，给我一个排查清单。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0620] My laptop is overheating whenever I run docker containers. What are the most likely causes, and what should I check first?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0621] 写一个 200 字左右的短故事：在一个下雨的黄昏，森林里遇见一只会说话的乌龟。要求有对话、有画面感。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0622] 把下面这段话翻译成自然流畅的英文，并保持原文的语气：『投机采样的核心思想是用一个小模型快速猜测未来若干个 token，再用大模型一次性验证。』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0623] 请把这段英文翻译成中文，并保持技术准确性：『The core idea of speculative decoding is to use a small draft model to predict multiple future tokens, then verify them in parallel with the large target model.』"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0624] 请写一段产品发布会的开场白，主题是发布一款面向开发者的代码补全 AI 工具，要求语气自信、有感染力，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0625] 帮我写一封正式的英文邮件，向一位海外学者 Dr. Smith 介绍我们的研究方向，希望能开展合作，约 250 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0626] 用文言文风格写一段关于『修身齐家治国平天下』的现代解读，要求语义清晰、有现代意识，约 200 字。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0627] 鸡兔同笼，共 35 个头，94 只脚，问鸡和兔子各几只？请给出推导过程。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0628] 如果一个城市每天有 30% 的人会出门，5% 的出门者会去某家咖啡店，咖啡店每位顾客平均消费 25 元，城市人口 100 万，估算这家咖啡店的日营业额。请说明每一步推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0629] 证明：对于任意正整数 n，1+2+3+...+n = n(n+1)/2。请给出两种不同的证明方法。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0630] Prove that the square root of 2 is irrational. Use a proof by contradiction and explain each step in detail."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0631] 假设你在一个 100 人的房间里，要赌一下『至少有两人生日相同』，给出概率推导（生日悖论）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0632] 如果一辆汽车以 60 km/h 匀速行驶，前方 200 米处有一个红绿灯刚变红 (持续 30 秒)，问车应该减速到什么速度才能在不停下的情况下到达时绿灯刚好亮？请给出推理。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0633] 请概述一下大语言模型的发展历程，从 Transformer 论文 (2017) 到 ChatGPT 出现 (2022)，列出几个关键里程碑及其意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0634] 总结一下 2010 年代深度学习在计算机视觉领域的主要突破：AlexNet、VGG、ResNet、Inception、EfficientNet 等架构的核心贡献。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0635] Summarize the key arguments in the paper 'Attention Is All You Need' (2017), and explain why it had such a large impact on the field."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0636] 请简要梳理一下 GPT 系列模型从 GPT-1 到 GPT-4 的发展，每一代的关键改进是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0637] 讲讲 MoE（Mixture of Experts）架构在大模型中的发展史，从 Switch Transformer 到 Mixtral 到 DeepSeek-V3，关键创新分别是什么？"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0638] 如果让你设计一个支持每秒百万级写入的实时数据库，需要考虑哪些核心问题？请从存储引擎、复制、一致性、缓存几个角度展开。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0639] When designing a distributed database system that must handle millions of concurrent writes while maintaining strong consistency, what are the core trade-offs and how would you address them?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0640] 请设计一个基于 LLM 的客服系统架构，要求支持 10 万 QPS，平均延迟 < 2 秒，给出关键组件和数据流。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0641] Imagine you're tasked with building a vector database from scratch that supports 1 billion 768-dim embeddings with sub-100ms ANN search latency. Walk me through your design choices."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0642] 我要做一个边缘端的实时人脸识别系统，硬件是 Jetson Orin。请帮我设计端到端 pipeline，包括模型选型、量化、推理后端。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0643] The historical impact of the Industrial Revolution extends far beyond the immediate technological changes of the 18th and 19th centuries. In what ways did it reshape global politics, economics, and class structure?"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0644] 请讲一下中国古代四大发明的产生背景，以及它们对世界文明的影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0645] 为什么文艺复兴会出现在意大利？请从经济、政治、文化几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0646] 请简要介绍一下『五四运动』的历史背景、核心诉求和长远影响。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0647] Discuss the role of the Silk Road in connecting Eastern and Western civilizations, both in terms of trade and cultural exchange."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0648] 请分析一下『双边市场』的核心特征，并以 Uber 和 Airbnb 为例说明它们如何冷启动。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0649] 解释一下『网络效应』和『规模经济』的区别，并各举两个互联网产品的例子。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0650] 为什么互联网早期更容易出现垄断？请从用户习惯、数据飞轮、固定成本几个角度分析。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0651] 如果让你给一家初创公司做 SaaS 定价策略，请给出三种定价模型的优劣分析（按席位、按用量、按价值）。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0652] 请用通俗语言解释一下量子纠缠是什么，以及为什么爱因斯坦称之为『鬼魅般的超距作用』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0653] 请解释相对论中的『时间膨胀』现象，并举一个 GPS 卫星的实际例子说明这一效应的工程意义。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0654] Explain how black holes form and why nothing, not even light, can escape past the event horizon. Use intuitive language."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0655] 讲讲熵增定律是什么，以及为什么它被称为『时间之箭』。"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0656] Generate a JSON object describing a user profile with fields name, email, age, preferences (as a nested object with theme and language). Output only valid JSON, no other text."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0657] 把以下书目信息整理成一个 JSON 数组，每个元素含 title, author, year, isbn 字段：\n《三体》刘慈欣 2008 9787536692930\n《活着》余华 1993 9787506365437\n《百年孤独》马尔克斯 1967 9787544253994"}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0658] Generate a YAML config for a Kubernetes Deployment running 3 replicas of a Python web app on port 8080, with readiness/liveness probes and resource limits."}, {"content": "ok"}]}
+{"conversations": [{"content": "[请求编号 0659] 请用 markdown 表格列出 Python 主流 Web 框架 (Django, Flask, FastAPI, Tornado) 在性能、生态、学习曲线、典型场景四个维度的对比。"}, {"content": "ok"}]}
