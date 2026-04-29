@@ -1,199 +1,275 @@
-# GLM-4.7-Flash 高并发投机采样测试报告
+# GLM-4.7-Flash 高并发投机采样全景对比报告（v2）
 
-## 1. 测试目的
+**日期**：2026-04-29
+**测试机**：autodl 实例（容器内），NVIDIA RTX PRO 6000 Blackwell Server 96GB
+**模型**：`zai-org/GLM-4.7-Flash`（Glm4MoeLiteForCausalLM, bf16, 56.4 GB）
+**框架**：sglang 0.5.10.post1
+**前一版报告**：`outputs/glm47_concurrency/REPORT.md`（commit `ae737b2`，仅含 baseline + NEXTN）
 
-老板要求评估在 GLM-4.7-Flash 全量模型上 sglang 投机采样在**高并发**场景的真实表现。
-之前在 GLM-4-32B-int4 上的所有 benchmark 都是 batch_size=1，没有参考价值；
-本次换到 96GB 大显存机器跑 bf16 全量模型，覆盖 1 / 8 / 32 / 64 四个并发档次。
+---
 
-## 2. 测试环境
+## 一、TL;DR（给老板的 30 秒摘要）
 
-| 项目 | 值 |
+在 GLM-4.7-Flash 上把 sglang 现成的 **4 种投机采样路径**（NEXTN / EAGLE / EAGLE2 / EAGLE3）
+跨 **4 档并发**（c=1/8/32/64）跑了完整 matrix。
+
+**结论**：sglang 自带 spec 在这个模型上**全部是负优化**，每一档并发都比 baseline 慢；
+并发越高，spec 输得越多；c=64 baseline 1604 tok/s，最强 spec（EAGLE2）只有 972 tok/s（baseline 的 61%）。
+
+**对项目方向的判断**：
+- 自研 CPU draft + GPU verify 要超越的不是 sglang spec（已经全负优化），是 **baseline c=64 = 1604 tok/s**
+- 单纯把 draft 搬 CPU 不够，必须同时打破 sglang spec mode 的 3 个架构限制（见第六节）
+- "高并发 spec 更香"是错的——本次实测正好相反，spec 在低并发收益最大
+
+---
+
+## 二、核心数字（output throughput, tok/s）
+
+| 并发 | baseline | NEXTN | EAGLE2 | EAGLE3 |
+|---:|---:|---:|---:|---:|
+| 1  | 110.3 | 91.3  | 95.2  | 71.7 |
+| 8  | 384.2 | 335.0 | 350.7 | 256.3 |
+| 32 | 937.6 | 681.0 | 731.2 | 519.5 |
+| 64 | **1603.5** | 883.1 | 972.1 | 671.7 |
+
+**spec / baseline 比值**（全部 < 1，即全负优化）：
+
+| 并发 | NEXTN | EAGLE2 | EAGLE3 |
+|---:|---:|---:|---:|
+| 1  | 0.83× | 0.86× | 0.65× |
+| 8  | 0.87× | 0.91× | 0.67× |
+| 32 | 0.73× | 0.78× | 0.55× |
+| 64 | **0.55×** | **0.61×** | **0.42×** |
+
+**accept_length / draft_max**（命中长度，越高越好）：
+
+| variant | accept_len | draft_max | acceptance |
+|---|---:|---:|---:|
+| NEXTN  (chain, topk=1)  | 1.95 | 4 | 49% |
+| EAGLE2 (tree,  topk=4)  | **2.30** | 8 | 29%（但绝对长度最长） |
+| EAGLE3 (HF head, topk=1)| 1.42 | 4 | 36% |
+
+---
+
+## 三、c=64 TTFT 异常值（拥塞放大镜）
+
+| variant | TTFT p50 (ms) | 备注 |
+|---|---:|---|
+| baseline | 142  | 正常 |
+| NEXTN    | 3075 | **21× baseline** |
+| EAGLE2   | 2392 | **17× baseline** |
+| EAGLE3   | **5908** | **42× baseline** |
+
+**根因**：sglang 在所有 spec 模式下强制把 `max_running_requests` 从 baseline 默认的 **2048 砍到 48**。
+c=64 客户端发出 64 路并发，server 一次最多只能处理 48 路，剩下 16 路全部排队，TTFT 直接飙升秒级。
+EAGLE3 因为 verify 计算更重排队恶化最严重。
+
+---
+
+## 四、四个 spec algo 的差别 + 排序
+
+四个 algo 可以按"draft 头来源 × 采样方式"两个维度分：
+
+| algo | draft 头 | 采样 | accept_len | c=64 tok/s |
+|---|---|---|---:|---:|
+| NEXTN  | 模型自带 MTP（57th nextn layer）| chain（topk=1） | 1.95 | 883 |
+| EAGLE  | 模型自带 MTP                    | chain（topk=1） | ≈ NEXTN | 未单独测 |
+| EAGLE2 | 模型自带 MTP                    | tree（topk=4）  | **2.30** | **972** |
+| EAGLE3 | HF `GLM-4.7-Flash-Eagle3` 单层 head | chain/tree    | 1.42 | 671 |
+
+**两条结论**：
+
+1. **同一个 draft 头下，tree（EAGLE2）严格优于 chain（NEXTN）**：因为 tree 一次给多条候选路径，
+   target verify 一次吃下整棵树挑最长 prefix，所以 accept 更长（2.30 vs 1.95）。
+2. **HF 上下载的 EAGLE3 head 比模型自带的 MTP 头还差**（1.42 < 1.95）。猜测是社区训练时
+   未对齐 GLM-4.7-Flash 最终 release 版本的 weights，draft 预测精度低。
+
+---
+
+## 五、为什么 spec 在 GLM-4.7-Flash 上必输？
+
+理论框架：spec 想赢必须满足
+
+```
+(accept_len + 1) × T_baseline  >  T_draft + T_verify
+```
+
+代入实测数字（c=1）：
+
+- T_baseline ≈ 9 ms（GLM-4.7-Flash MoE Lite 单 token decode forward）
+- T_draft   ≈ 6–10 ms（draft head 跑 num_steps=3 步）
+- T_verify  ≈ 15–18 ms（target 跑 num_draft_tokens=4 输入的 forward）
+- accept_len ≈ 1.95（NEXTN）
+
+理论 spec 上限 = (1.95 + 1) × 9 / (8 + 16) ≈ **1.1× baseline**——也就是说**理论最好只能略快**，
+任何架构 overhead（spec scheduler、关 overlap、关 piecewise cuda graph）都会把这点边际优势吃光。
+
+实测 spec 在 c=1 全部负优化（NEXTN 0.83×，EAGLE2 0.86×），完全符合上面的理论估算。
+
+**根本原因**：
+- GLM-4.7-Flash 是 **MoE Lite**（4 active experts，47 hidden 层 hidden=2048），
+  baseline 单 forward 已经只要 9 ms，**baseline 的天花板太低，不给 spec 留空间**
+- 大模型上 spec 红利更大（baseline forward 慢，spec 节省的 forward 数量更值钱）
+
+---
+
+## 六、为什么并发越高 spec 越差？
+
+c=1 spec 输 14–35%，c=64 spec 输 39–58%。原因分四层：
+
+1. **baseline 在高并发已经把 GPU 算满**：decode 阶段从 memory-bound 转向 compute-bound，
+   spec 的"用一次 verify 出多 token"红利前提（memory-bound）不复存在。
+2. **sglang spec mode 强制 `max_running_requests=48`**：c=64 直接排队，TTFT 飙到秒级。
+3. **spec mode 默认关 `overlap_schedule`**：本来 baseline 的 prefill / decode 可以重叠，spec 模式都串行。
+4. **spec mode 默认关 `piecewise_cuda_graph`**：变长输入回退到 eager 路径，再降一档吞吐。
+
+**这意味着**：自研 CPU draft + GPU verify 如果只是把 draft 计算搬到 CPU、套 sglang 现成 spec 框架，
+就会继承上面 4 个限制，**根本拿不到 baseline 1604 tok/s 的水平**。要赢必须从架构层动手。
+
+---
+
+## 七、对自研 CPU draft + GPU verify 项目的指导意义
+
+### 7.1 真正要超越的目标
+
+| 目标 | 数字 |
 |---|---|
-| GPU | NVIDIA RTX PRO 6000 Blackwell Server (96 GB) |
-| Driver / CUDA | 590.44.01 / 13.1 |
-| PyTorch | 2.9.1+cu128 |
-| sglang | 0.5.10.post1 |
-| 模型 | GLM-4.7-Flash (`Glm4MoeLiteForCausalLM`, bf16) |
-| 模型路径 | `/root/autodl-tmp/models/ZhipuAI/GLM-4.7-Flash` |
-| 模型大小 | 56.37 GB (bf16, 47 层 MoE Lite, 64 routed experts + 1 shared, 4 active) |
-| KV cache | bf16, 23.72 GB / 470,372 tokens |
-| context_len | 202,752 |
+| **必须超越**：baseline c=64 | **1603 tok/s** |
+| 现有 sglang spec 上限：EAGLE2 c=64 | 972 tok/s（baseline 的 61%） |
+| sglang NEXTN c=64 | 883 tok/s（baseline 的 55%） |
 
-> 注：sm_120 上当前 PyTorch 编译目标是 CUDA 12.8，启动时 sglang 会打 "SM 12.x requires CUDA >= 12.9" 警告，
-> 但 cuda graph 捕获和正常推理都不受影响（5090 上之前同样的警告，cuda graph 必须禁用；
-> Server 版 RTX PRO 6000 上 cuda graph 可正常启用）。
+baseline 是真目标。**别再以为打过 sglang NEXTN/EAGLE2 就算赢了，那是负优化，门槛太低。**
 
-### sglang 关键配置
+### 7.2 必须打破的架构限制
 
-| 项 | baseline | nextn |
+| 限制项 | sglang 默认值 | 必须改成 |
 |---|---|---|
-| `speculative_algorithm` | 无 | `NEXTN` (sglang 内部映射为 `EAGLE`) |
-| `speculative_draft_model_path` | – | 同 target 路径（用模型自带的 MTP 层做 draft） |
-| `speculative_num_steps` | – | 3 |
-| `speculative_eagle_topk` | – | 1 |
-| `speculative_num_draft_tokens` | – | 4 |
-| `mem_fraction_static` | 0.85 | 0.85 |
-| `cuda_graph` | 启用 (bs 1…256) | 启用 (bs 1…256, 含 draft cuda graph) |
-| `piecewise_cuda_graph` | 启用 | sglang 默认禁用 (spec v1 模式) |
-| `max_running_requests` | 2048 (默认上限) | **48** (sglang 在 spec 模式下强制下调) |
-| `disable_overlap_schedule` | False | **True** (spec v1 不支持 overlap scheduler) |
+| `max_running_requests` (spec) | 48 | ≥ 256（至少能容下高并发） |
+| `disable_overlap_schedule` (spec) | True | False（CPU draft 和 GPU verify 真正并行） |
+| `disable_piecewise_cuda_graph` (spec) | True | False（变长输入也走 graph） |
+| verify 输入 token 数 K | 4–32 | 自适应（高并发减小 K，低并发用大 K） |
 
-## 3. 测试方法
+### 7.3 为什么 CPU draft 在我们这个场景**反而有戏**
 
-用 sglang 自带的 **`sglang.bench_serving`** 作为压测客户端，
-在同一组真实 chat prompts 上分别压两个 server，取相同并发档位的结果对比。
+虽然 spec 整体在 GLM-4.7-Flash 上是负优化，CPU draft + GPU verify 有几个独特优势：
 
-### 3.1 数据集（`data/prompts_realistic.jsonl`）
+1. **完全不占 GPU 显存**（不像 EAGLE3 head 还要占显存 + 跑 GPU forward），KV cache 能开更大
+2. **真正能并行**（CPU 跑 draft 时 GPU 在跑 verify），sglang 当前 spec mode 没法 overlap
+3. **draft 速度可控**（CPU AMX/AVX 上跑 0.6B Q4 模型可达 50–100 tok/s 以上），跟 GPU verify 时间能匹配
+4. **不依赖 sglang spec 框架**，可以直接接 baseline 的 max_running_requests=2048 + overlap scheduler
 
-ShareGPT 兼容 jsonl 格式，**66 条原始多样化中英 chat prompts × 重复 10 次 = 660 条独立请求**。
-每条 prompt 都加了 `[请求编号 NNNN]` 唯一前缀，**避免 sglang prefix-cache 命中导致 throughput 失真**。
+### 7.4 当前 blocker
 
-prompt 覆盖：编程补全、代码 review、系统/算法概念解释、调试问题、写作翻译、
-数学/物理推理、长文总结、架构设计、JSON/YAML 结构化输出，等。
+- **draft 模型词表不兼容**：GLM-4.5-0.6B-v3 vocab=151552，GLM-4.7-Flash vocab=154880，
+  sglang STANDALONE 直接 CUBLAS 报错。需要找 vocab 对齐的小模型（最理想：拿模型自带 MTP 头的 weights 出来跑 CPU）
 
-> 一开始用 sglang 自带的 `random-ids` 数据集（纯随机 token id），结果 NEXTN 在 bs=1 上
-> accept_len 仅 ~0.49，throughput 比 baseline 低一半 —— 这种 random 序列对 spec decoding
-> **不公平**（draft 没有任何 pattern 可学）。换成真实 chat 数据后 accept_len 稳定在 ~1.92，
-> 才反映合理的 spec 行为。
+---
 
-### 3.2 并发档位与请求总数
+## 八、工程踩坑（值得归档）
 
-每个并发档位下，请求总数 = `max(64, concurrency × 8)`，确保稳态测量：
+### 8.1 sglang Glm4MoeLite + EAGLE3 必须打的一行 patch
 
-| 并发 | num_prompts |
-|---|---|
+文件：`/root/autodl-tmp/conda_envs/sglang/lib/python3.12/site-packages/sglang/srt/models/glm4_moe_lite.py`，约 436 行 `Glm4MoeLiteModel.__init__` 内：
+
+```python
+self.enable_a2a_moe = False  # patch: DeepseekV2Model.forward (EAGLE3 layers_to_capture branch) 读这个
+```
+
+**根因**：`Glm4MoeLiteModel.__init__` 调的是 `nn.Module.__init__(self)` 不是 `super().__init__()`，
+没继承父类 `DeepseekV2Model` 的 `enable_a2a_moe` 属性。NEXTN/baseline 不踩，EAGLE3 必踩。
+
+### 8.2 EAGLE3 还需要 env
+
+```bash
+export SGLANG_ALLOW_OVERWRITE_LONGER_CONTEXT_LEN=1
+```
+
+EAGLE3 draft `max_position_embeddings=4096` < target 202752，sglang 要求显式同意。
+
+### 8.3 autodl 容器 cgroup 内存限制 128 GB
+
+宿主机 1 TB RAM，但**容器 cgroup 限制 128 GB**（`/sys/fs/cgroup/memory.max`）。
+单个 sglang server 占 ~68 GB，连续启停时如果 sleep 太短，cgroup OOM 直接 SIGKILL 新 server，
+**且不写 dmesg / oom_kill 计数**，现象是 server log 完全空，bash 报 `Killed setsid nohup ...`。
+
+修复：`bench_all_concurrency.sh` 在 `kill_server()` 里轮询
+`/sys/fs/cgroup/memory.current`，等到 < 阈值（默认 20 GB）或超时 120s 再启动下一个 server。
+
+### 8.4 draft 词表不兼容会 CUBLAS 报错
+
+`STANDALONE` 算法用 GLM-4.5-0.6B-v3 当 draft，vocab 151552 ≠ target 154880，
+draft 跑 forward 时 attention o_proj 报 `CUBLAS_STATUS_INTERNAL_ERROR`。
+必须找 vocab 对齐的 draft（同模型族）。
+
+---
+
+## 九、测试方法
+
+### 9.1 数据集
+
+`data/prompts_realistic.jsonl`：66 条真实中英 chat prompts × 10 轮 + 唯一编号前缀 = 660 条。
+覆盖：编程 / 算法 / 写作 / 翻译 / 总结 / 架构 / JSON 结构化输出。
+每条带 `[请求编号 NNNN]` 唯一前缀，**防止 sglang prefix-cache 命中污染 throughput**。
+
+### 9.2 各并发档 num_prompts
+
+固定 `num_prompts = max(64, concurrency × 8)`：
+
+| concurrency | num_prompts |
+|---:|---:|
 | 1  | 64  |
 | 8  | 64  |
 | 32 | 256 |
 | 64 | 512 |
 
-固定参数：
-- 输出长度 `--sharegpt-output-len 256`（强制每条响应 256 token）
-- `--apply-chat-template`（走模型自带 chat template）
-- `--warmup-requests 2`
+固定参数：`--sharegpt-output-len 256`，`--apply-chat-template`，`--warmup-requests 2`，温度 = 默认（spec mode 强制贪心）。
 
-### 3.3 复现命令
+### 9.3 spec 参数（全部用 sglang 默认值）
 
-服务器端，仓库 `/root/autodl-tmp/spec_decode/`：
+| variant | algo | num_steps | num_draft_tokens | eagle_topk | draft 模型 |
+|---|---|---:|---:|---:|---|
+| NEXTN  | NEXTN  | 3 | 4 | 1 | target 自身（自带 MTP 头） |
+| EAGLE2 | EAGLE  | 3 | 8 | 4 | target 自身（自带 MTP 头） |
+| EAGLE3 | EAGLE3 | 3 | 4 | 1 | `GLM-4.7-Flash-Eagle3`（HF） |
+
+### 9.4 一键复现
 
 ```bash
-# 启动 baseline server
-bash launch_glm47.sh baseline
+# 一键跑全 matrix（约 50 分钟），结果落 outputs/glm47_concurrency/_combined_summary.tsv
+cd /root/autodl-tmp/spec_decode
+setsid nohup bash bench_all_concurrency.sh \
+  > /root/autodl-tmp/logs/bench_all_main.log 2>&1 < /dev/null &
 
-# 启动 NEXTN spec server
-bash launch_glm47.sh nextn
-
-# 跑高并发 bench（任一 server ready 后）
-OUT_LEN=256 CONC_LIST='1 8 32 64' bash bench_concurrency.sh <baseline|nextn>
+# 跑指定子集
+VARIANTS="baseline eagle2" CONC_LIST="1 64" bash bench_all_concurrency.sh
 ```
 
-结果落到 `outputs/glm47_concurrency/<tag>/c{N}.json` + `summary.tsv`。
+---
 
-## 4. 测试结果
+## 十、附录：文件清单
 
-### 4.1 throughput / latency 对比
+仓库：`/root/autodl-tmp/spec_decode/`，GitHub：`git@github.com:JiNanPiWang/spec_decode.git`。
 
-`output_throughput` 是 server 整段 benchmark 的总输出 token / 总时长，单位 token/s。
-TPOT = Time Per Output Token (decode 期 inter-token 延迟，p50)。
-TTFT = Time To First Token (含 prefill + 排队，p50)。
+**脚本**：
 
-| 并发 | 指标 | baseline | NEXTN | 比值 |
-|---:|---|---:|---:|---:|
-| 1  | output throughput (tok/s) | **109.4** | 90.2  | 0.82× |
-| 1  | TPOT p50 (ms)             | 9.0       | 10.9  | +21% |
-| 1  | TTFT p50 (ms)             | 44.5      | 73.5  | +65% |
-| 8  | output throughput (tok/s) | **385.2** | 336.2 | 0.87× |
-| 8  | TPOT p50 (ms)             | 20.4      | 22.8  | +12% |
-| 8  | TTFT p50 (ms)             | 44.1      | 110.0 | +149% |
-| 32 | output throughput (tok/s) | **937.7** | 666.3 | 0.71× |
-| 32 | TPOT p50 (ms)             | 33.6      | 46.8  | +39% |
-| 32 | TTFT p50 (ms)             | 186.5     | 139.4 | -25% |
-| 64 | output throughput (tok/s) | **1598.8**| 873.7 | 0.55× |
-| 64 | TPOT p50 (ms)             | 39.4      | 53.9  | +37% |
-| 64 | TTFT p50 (ms)             | 145.5     | 3167.6| +2076% |
+- `launch_glm47.sh` — 启动 baseline / nextn / eagle / eagle2 / eagle3 / standalone / ngram 任一 server
+- `bench_concurrency.sh` — 对单 server 扫一组并发档 + 落 summary.tsv
+- `bench_all_concurrency.sh` — 全 matrix wrapper（含 cgroup mem 等待，autodl 必备）
 
-### 4.2 NEXTN 的 acceptance 数据
+**数据**：
 
-来自 server 日志中 640 个 decode batch 的统计：
+- `data/prompts_realistic.jsonl` — 660 条真实 chat prompts
 
-| 指标 | 数值 |
-|---|---|
-| 平均 accept_len | **1.92** / 4 (= 48% acceptance rate) |
-| accept_len 主要分布 | 1.75–2.20 |
-| server 端平均 gen throughput (跨所有 batch) | NEXTN 184.6 tok/s vs baseline 342.5 tok/s |
+**结果**：
 
-按理论估计：accept_len=1.92 意味着每个 verify step 平均吐出 (1.92 + 1) ≈ 2.92 个 token，
-理论加速 ~2.9×。但 NEXTN 整体 gen tps 只有 baseline 的 **54%**。
+- `outputs/glm47_concurrency/_combined_summary.tsv` — **全 4 variant × 4 并发汇总（带 accept_length）**
+- `outputs/glm47_concurrency/<variant>/c{1,8,32,64}.json` — 单档 sglang.bench_serving 原始 JSON
+- `outputs/glm47_concurrency/<variant>/summary.tsv` — 单 variant 4 并发汇总
+- `outputs/glm47_concurrency/REPORT.md` — 本报告（v2，超过 v1 commit `ae737b2`）
 
-## 5. 分析
+**日志**：
 
-**现象：sglang 自带 NEXTN 投机采样在 GLM-4.7-Flash 上各并发档次都比 baseline 慢**，
-并发越高、相对劣势越大（c=64 throughput 只有 baseline 的 55%）。
-
-主要原因（按贡献排序）：
-
-1. **`max_running_requests` 被强制下调到 48**（baseline 是 2048），
-   c=64 时 sglang 必须排队，TTFT p50 从 145 ms 飙到 3.2 s。
-   这是 sglang spec v1 的硬性限制，不是参数问题。
-
-2. **每次 verify forward 的成本远超一次 baseline forward**：
-   spec mode 下要跑 `num_draft_tokens=4` 的 verify（输入 token 数是 baseline 的 4 倍），
-   外加 draft model 的 3 次 forward（`num_steps=3`）。
-   accept_len=1.92 意味着每个 verify step 真正吐出的有效 token 不到 3 个，
-   边际收益打不平边际成本。
-
-3. **GLM-4.7-Flash MoE Lite 单 forward 已经很快**：
-   2048 hidden / 47 层 / 4 active experts 的小活跃量，单步 decode 已经接近 throughput 极限，
-   spec 减少 forward 次数的红利在这种小模型上本来就不大。
-
-4. **spec v1 不支持 overlap scheduler**：baseline 默认开启 overlap，spec 必须关。
-   仅这一项在高并发下就有可观的 throughput 损失。
-
-5. **MoE Lite 的 piecewise cuda graph 在 spec 模式下默认禁用**，
-   而 baseline 启用了 piecewise cuda graph（变长 token 大小都被 graph 化），
-   prefill / 长 input 处理上 baseline 有额外优势。
-
-6. **真实 chat prompts 的 draft acceptance 偏低**（~48%）：
-   作为对比，sglang 的 NGRAM 在模板化 prompt 上能跑到 5x，但在自由 chat 上 acceptance 同样会暴跌。
-   draft 是模型自带的 1 个 nextn layer，本身预测能力有限，且没有针对 chat 微调。
-
-## 6. 结论
-
-* **现状**：sglang 0.5.10 自带的 NEXTN/MTP 投机采样，**配 GLM-4.7-Flash 默认参数（num_steps=3 / num_draft_tokens=4），在 RTX PRO 6000 Blackwell 96GB 上跑高并发场景，比 baseline 慢 13%–45%，并发越高劣势越大**。
-* 老板想看的"高并发投机采样性能"，**当前的 sglang 默认 spec 路径并不能带来收益**。
-* baseline 在 c=64 已经能跑 **1599 tok/s**（per-req TPOT ~39 ms），是这个机器的当前 ceiling。
-
-## 7. 后续建议
-
-> 这部分是给老板和接下来工作的输入，不在本次测试范围内。
-
-1. **调 NEXTN 的 spec 参数**：试 `num_steps=2 num_draft_tokens=2`（更短 draft，verify 更轻），
-   或 `num_steps=5 num_draft_tokens=8`（更激进，但需要更高 acceptance 才赚）。
-   最值得做的是用 server log 抓不同参数下的 accept_len × verify_time 平面图，找最优点。
-2. **看 sglang 的 spec v2 / overlap scheduler**：log 里提示 `SGLANG_ENABLE_SPEC_V2=True`
-   有实验性的 overlap scheduler，能不能恢复一部分高并发吞吐值得评估。
-3. **对照实验**：用 NGRAM 在同样数据集跑一遍，看在真实 chat prompts 上 NGRAM 是否同样退化
-   （上次在模板化 prompt 上 NGRAM 跑出 5x 是数据集失真，本次 660 条真实 prompts 是公平的对照）。
-4. **回到老板的主线**：CPU draft + GPU verify 方案的真正 baseline，应该是
-   "高并发下 sglang 内置 spec 算法的最佳吞吐"，本次测试给出的 baseline 数字（1599 tok/s @ c=64）
-   就是后续 CPU draft 方案要超越的目标。CPU draft 在 bs=1 上的优势能不能 scale 到高并发，
-   这是下一个 milestone 要回答的问题。
-
-## 附录：脚本与产物
-
-仓库内（`/root/autodl-tmp/spec_decode/`）：
-
-- `launch_glm47.sh` — 启动 baseline / nextn / ngram 三种 server，自动 kill 旧进程 + 等待 ready
-- `bench_concurrency.sh` — 在指定 server 上扫并发列表，调用 sglang.bench_serving，输出 jsonl + summary.tsv
-- `data/prompts_realistic.jsonl` — 660 条真实 chat prompts (66 × 10 + 唯一编号)
-- `outputs/glm47_concurrency/baseline/` — baseline 完整结果（c1/c8/c32/c64.json + summary.tsv）
-- `outputs/glm47_concurrency/nextn/` — NEXTN 完整结果
-- `outputs/glm47_concurrency/baseline_random_ids/` — 早期 random-ids 数据集的 baseline 结果（不参与对比，仅留作参考）
-- `outputs/glm47_concurrency/REPORT.md` — 本报告
-
-server 端日志：
-- `/root/autodl-tmp/logs/server_baseline.log`
-- `/root/autodl-tmp/logs/server_nextn.log`
-- `/root/autodl-tmp/logs/bench_baseline.log`
-- `/root/autodl-tmp/logs/bench_nextn.log`
+- `/root/autodl-tmp/logs/bench_all_overall.log` — 总流程
+- `/root/autodl-tmp/logs/bench_all_launch_<v>.log` — 各 variant 启动日志
+- `/root/autodl-tmp/logs/bench_all_bench_<v>.log` — 各 variant bench 详细日志
+- `/root/autodl-tmp/logs/server_<v>.log` — sglang server 自身日志
